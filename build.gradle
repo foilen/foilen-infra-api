@@ -1,0 +1,103 @@
+buildscript {
+  repositories {
+    mavenLocal()
+    jcenter()
+  }
+  dependencies {
+    classpath 'io.spring.gradle:dependency-management-plugin:1.0.3.RELEASE'
+  }
+}
+
+plugins {
+  id "com.jfrog.bintray" version "1.7.3"
+}
+
+apply plugin: 'eclipse'
+apply plugin: 'java'
+apply plugin: 'io.spring.dependency-management'
+apply plugin: 'maven'
+apply plugin: 'maven-publish'
+
+group = 'com.foilen'
+version = System.getenv('VERSION')?:'master-SNAPSHOT'
+
+repositories {
+  mavenLocal()
+  jcenter()
+  mavenCentral()
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencyManagement {
+  imports {
+    mavenBom 'io.spring.platform:platform-bom:Brussels-SR4'
+  }
+}
+
+eclipse {
+  classpath {
+    downloadSources = true
+    downloadJavadoc = true
+  }
+}
+
+dependencies {
+
+  // Plugin
+  compile "com.foilen:foilen-infra-plugin-core:$foilenInfraPluginVersion"
+
+  // Spring
+  compile "org.apache.httpcomponents:httpclient"
+  compile "org.springframework:spring-web"
+  
+  // Test
+  testCompile "junit:junit"
+}
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+  classifier = 'sources'
+  from sourceSets.main.allSource
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+  classifier = 'javadoc'
+  from javadoc.destinationDir
+}
+
+artifacts {
+  archives sourcesJar
+  archives javadocJar
+}
+
+bintray {
+  user = System.getenv('BINTRAY_USER')
+  key = System.getenv('BINTRAY_KEY')
+
+  publish = true
+
+  pkg {
+    repo = 'maven'
+    userOrg = 'foilen'
+    name = 'com.foilen:foilen-infra-api'
+    licenses = ['MIT']
+    vcsUrl = 'https://github.com/foilen/foilen-infra-api'
+  }
+
+  publications = ['MyPublication']
+}
+
+publishing {
+  publications {
+    MyPublication(MavenPublication) {
+      from components.java
+      artifact sourcesJar
+      artifact javadocJar
+      groupId 'com.foilen'
+      artifactId 'foilen-infra-api'
+    }
+  }
+}
+
+task wrapper(type: Wrapper) { gradleVersion = '4.1' }
