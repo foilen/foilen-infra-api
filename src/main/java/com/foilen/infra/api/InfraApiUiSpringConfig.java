@@ -25,7 +25,7 @@ import org.springframework.http.client.ClientHttpRequestFactory;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.web.client.RestTemplate;
 
-import com.foilen.smalltools.crypt.cert.RSACertificate;
+import com.foilen.smalltools.crypt.spongycastle.cert.RSACertificate;
 import com.foilen.smalltools.tools.JsonTools;
 import com.google.common.base.Strings;
 
