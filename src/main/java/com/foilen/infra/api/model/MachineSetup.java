@@ -14,6 +14,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.foilen.infra.plugin.v1.core.base.resources.Application;
+import com.foilen.infra.plugin.v1.core.base.resources.UnixUser;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class MachineSetup {
@@ -21,18 +22,18 @@ public class MachineSetup {
     // UI service
     private String uiApiBaseUrl;
     private String uiApiCert;
-    private String uiApiUsername;
-    private String uiApiKey;
+    private String uiApiUserId;
+    private String uiApiUserKey;
     private String machineName;
 
     // Unix Users
     private List<UnixUser> unixUsers = new ArrayList<>();
 
     // Application
-    private List<Application> application = new ArrayList<>();
+    private List<Application> applications = new ArrayList<>();
 
-    public List<Application> getApplication() {
-        return application;
+    public List<Application> getApplications() {
+        return applications;
     }
 
     public String getMachineName() {
@@ -47,20 +48,20 @@ public class MachineSetup {
         return uiApiCert;
     }
 
-    public String getUiApiKey() {
-        return uiApiKey;
+    public String getUiApiUserId() {
+        return uiApiUserId;
     }
 
-    public String getUiApiUsername() {
-        return uiApiUsername;
+    public String getUiApiUserKey() {
+        return uiApiUserKey;
     }
 
     public List<UnixUser> getUnixUsers() {
         return unixUsers;
     }
 
-    public void setApplication(List<Application> application) {
-        this.application = application;
+    public void setApplications(List<Application> applications) {
+        this.applications = applications;
     }
 
     public void setMachineName(String machineName) {
@@ -75,12 +76,12 @@ public class MachineSetup {
         this.uiApiCert = uiApiCert;
     }
 
-    public void setUiApiKey(String uiApiKey) {
-        this.uiApiKey = uiApiKey;
+    public void setUiApiUserId(String uiApiUserId) {
+        this.uiApiUserId = uiApiUserId;
     }
 
-    public void setUiApiUsername(String uiApiUsername) {
-        this.uiApiUsername = uiApiUsername;
+    public void setUiApiUserKey(String uiApiUserKey) {
+        this.uiApiUserKey = uiApiUserKey;
     }
 
     public void setUnixUsers(List<UnixUser> unixUsers) {
