@@ -33,13 +33,13 @@ import com.google.common.base.Strings;
  * Use this config to use the infra system API.
  */
 @Configuration
-public class InfraApiUiSpringConfig {
+public class InfraApiSpringConfig {
 
     @Autowired
     public Environment environment;
 
     @Bean
-    public InfraApiUiService infraApiUiService() {
+    public InfraApiService infraApiService() {
         try {
 
             String loginConfigFile = environment.getRequiredProperty("infraApi.configFile");
@@ -49,7 +49,7 @@ public class InfraApiUiSpringConfig {
             String apiUser = config.getApiUser();
             String apiKey = config.getApiKey();
 
-            InfraApiUiServiceImpl loginClient = new InfraApiUiServiceImpl(baseUrl, apiUser, apiKey);
+            InfraApiServiceImpl loginClient = new InfraApiServiceImpl(baseUrl, apiUser, apiKey);
 
             // Trust the certificate itself
             String certFile = config.getCertFile();
@@ -76,7 +76,7 @@ public class InfraApiUiSpringConfig {
                 HttpClient httpClient = HttpClientBuilder.create().useSystemProperties().setSSLSocketFactory(sslConnectionSocketFactory).build();
                 ClientHttpRequestFactory requestFactory = new HttpComponentsClientHttpRequestFactory(httpClient);
                 RestTemplate restTemplate = new RestTemplate(requestFactory);
-                loginClient.setRestTemplate(restTemplate);
+                loginClient = new InfraApiServiceImpl(baseUrl, apiUser, apiKey, restTemplate);
             }
 
             return loginClient;

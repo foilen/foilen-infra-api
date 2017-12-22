@@ -14,7 +14,7 @@ import java.util.List;
 import com.foilen.infra.api.model.MachineSetup;
 import com.foilen.infra.api.model.SystemStats;
 
-public interface InfraApiUiService {
+public interface InfraMachineApiService {
 
     /**
      * Retrieve the softwares to install and how to configure them on the machine.
@@ -34,4 +34,5 @@ public interface InfraApiUiService {
      *            the recorded stats
      */
     void sendSystemStats(String machineName, List<SystemStats> systemStats);
+
 }

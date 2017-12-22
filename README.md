@@ -28,4 +28,4 @@ If you are using a certificate that is not in your Java trusts store, you can sp
 
 Once you created the file, you need to define the property "infraApi.configFile" with the path to the file.
 
-Use the Spring Config class: *com.foilen.infra.api.InfraApiUiSpringConfig*. That will give you an *InfraApiUiService* bean.
+Use the Spring Config class: *com.foilen.infra.api.InfraApiSpringConfig*. That will give you an *InfraApiService* bean.

@@ -46,7 +46,7 @@ eclipse {
 dependencies {
 
   // Plugin
-  compile "com.foilen:foilen-infra-plugin-core:$foilenInfraPluginVersion"
+  compile "com.foilen:foilen-infra-plugin-core-system:$foilenInfraPluginVersion"
 
   // Spring
   compile "org.apache.httpcomponents:httpclient"
