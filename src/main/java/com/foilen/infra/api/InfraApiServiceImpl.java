@@ -10,10 +10,22 @@
 package com.foilen.infra.api;
 
 import java.net.URI;
+import java.security.KeyStore;
 import java.util.Map;
 
+import javax.net.ssl.SSLContext;
+
+import org.apache.http.client.HttpClient;
+import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
+import org.apache.http.impl.client.HttpClientBuilder;
+import org.apache.http.ssl.SSLContextBuilder;
+import org.springframework.http.client.ClientHttpRequestFactory;
+import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.http.client.support.BasicAuthorizationInterceptor;
 import org.springframework.web.client.RestTemplate;
+
+import com.foilen.smalltools.crypt.spongycastle.cert.RSACertificate;
+import com.google.common.base.Strings;
 
 public class InfraApiServiceImpl implements InfraApiService {
 
@@ -26,9 +38,30 @@ public class InfraApiServiceImpl implements InfraApiService {
         restTemplate.getInterceptors().add(new BasicAuthorizationInterceptor(apiUser, apiKey));
     }
 
-    public InfraApiServiceImpl(String infraBaseUrl, String apiUser, String apiKey, RestTemplate restTemplate) {
+    public InfraApiServiceImpl(String infraBaseUrl, String apiUser, String apiKey, String certText) {
         this.infraBaseUrl = infraBaseUrl;
-        this.restTemplate = restTemplate;
+
+        if (Strings.isNullOrEmpty(certText)) {
+            restTemplate = new RestTemplate();
+        } else {
+            try {
+                RSACertificate rsaCertificate = RSACertificate.loadPemFromString(certText);
+
+                KeyStore truststore = KeyStore.getInstance(KeyStore.getDefaultType());
+                truststore.load(null, null);
+                truststore.setCertificateEntry("foilen-infra", rsaCertificate.getCertificate());
+                SSLContext sslContext = new SSLContextBuilder().loadTrustMaterial(truststore, null).build();
+
+                SSLConnectionSocketFactory sslConnectionSocketFactory = new SSLConnectionSocketFactory(sslContext);
+                HttpClient httpClient = HttpClientBuilder.create().useSystemProperties().setSSLSocketFactory(sslConnectionSocketFactory).build();
+                ClientHttpRequestFactory requestFactory = new HttpComponentsClientHttpRequestFactory(httpClient);
+                restTemplate = new RestTemplate(requestFactory);
+
+            } catch (Exception e) {
+                throw new InfraApiUiException(e);
+            }
+        }
+
         restTemplate.getInterceptors().add(new BasicAuthorizationInterceptor(apiUser, apiKey));
     }
 
