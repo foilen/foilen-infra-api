@@ -26,6 +26,12 @@ public class MachineSetup {
     private String uiApiUserKey;
     private String machineName;
 
+    // Redirector
+    private int redirectorBridgePort = 11000;
+    private List<String> redirectorCaCerts = new ArrayList<>();
+    private String redirectorNodeCert;
+    private String redirectorNodeKey;
+
     // Unix Users
     private List<UnixUser> unixUsers = new ArrayList<>();
 
@@ -38,6 +44,22 @@ public class MachineSetup {
 
     public String getMachineName() {
         return machineName;
+    }
+
+    public int getRedirectorBridgePort() {
+        return redirectorBridgePort;
+    }
+
+    public List<String> getRedirectorCaCerts() {
+        return redirectorCaCerts;
+    }
+
+    public String getRedirectorNodeCert() {
+        return redirectorNodeCert;
+    }
+
+    public String getRedirectorNodeKey() {
+        return redirectorNodeKey;
     }
 
     public String getUiApiBaseUrl() {
@@ -66,6 +88,22 @@ public class MachineSetup {
 
     public void setMachineName(String machineName) {
         this.machineName = machineName;
+    }
+
+    public void setRedirectorBridgePort(int redirectorBridgePort) {
+        this.redirectorBridgePort = redirectorBridgePort;
+    }
+
+    public void setRedirectorCaCerts(List<String> redirectorCaCerts) {
+        this.redirectorCaCerts = redirectorCaCerts;
+    }
+
+    public void setRedirectorNodeCert(String redirectorNodeCert) {
+        this.redirectorNodeCert = redirectorNodeCert;
+    }
+
+    public void setRedirectorNodeKey(String redirectorNodeKey) {
+        this.redirectorNodeKey = redirectorNodeKey;
     }
 
     public void setUiApiBaseUrl(String uiApiBaseUrl) {
