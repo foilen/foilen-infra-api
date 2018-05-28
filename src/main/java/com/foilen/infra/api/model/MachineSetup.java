@@ -1,7 +1,7 @@
 /*
     Foilen Infra API
     https://github.com/foilen/foilen-infra-api
-    Copyright (c) 2017 Foilen (http://foilen.com)
+    Copyright (c) 2017-2018 Foilen (http://foilen.com)
 
     The MIT License
     http://opensource.org/licenses/MIT
@@ -13,8 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.foilen.infra.plugin.v1.core.base.resources.Application;
-import com.foilen.infra.plugin.v1.core.base.resources.UnixUser;
+import com.foilen.infra.resource.application.Application;
+import com.foilen.infra.resource.unixuser.UnixUser;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class MachineSetup {

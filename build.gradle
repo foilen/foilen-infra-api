@@ -46,7 +46,9 @@ eclipse {
 dependencies {
 
   // Plugin
-  compile "com.foilen:foilen-infra-plugin-core-system:$foilenInfraPluginVersion"
+  compile "com.foilen:foilen-infra-plugin-core:$foilenInfraPluginVersion"
+  compileOnly "com.foilen:foilen-infra-resource-application:0.1.0"
+  compileOnly "com.foilen:foilen-infra-resource-unixuser:0.1.0"
 
   // Spring
   compile "org.apache.httpcomponents:httpclient"
@@ -100,4 +102,4 @@ publishing {
   }
 }
 
-task wrapper(type: Wrapper) { gradleVersion = '4.1' }
+task wrapper(type: Wrapper) { gradleVersion = '4.7' }
