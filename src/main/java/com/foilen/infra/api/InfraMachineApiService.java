@@ -11,8 +11,9 @@ package com.foilen.infra.api;
 
 import java.util.List;
 
-import com.foilen.infra.api.model.MachineSetup;
 import com.foilen.infra.api.model.SystemStats;
+import com.foilen.infra.api.response.ResponseMachineSetup;
+import com.foilen.infra.api.response.ResponseWithStatus;
 
 public interface InfraMachineApiService {
 
@@ -23,7 +24,7 @@ public interface InfraMachineApiService {
      *            the hostname of the machine
      * @return the configuration
      */
-    MachineSetup getMachineSetup(String machineName);
+    ResponseMachineSetup getMachineSetup(String machineName);
 
     /**
      * Send some recorded system stats.
@@ -33,6 +34,6 @@ public interface InfraMachineApiService {
      * @param systemStats
      *            the recorded stats
      */
-    void sendSystemStats(String machineName, List<SystemStats> systemStats);
+    ResponseWithStatus sendSystemStats(String machineName, List<SystemStats> systemStats);
 
 }

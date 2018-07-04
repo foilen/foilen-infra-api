@@ -12,3 +12,6 @@ bin/
 # IDEA
 .idea/
 /out/
+
+# Projects
+_*

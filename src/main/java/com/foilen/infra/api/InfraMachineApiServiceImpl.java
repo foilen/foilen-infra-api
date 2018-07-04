@@ -13,8 +13,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.foilen.infra.api.model.MachineSetup;
 import com.foilen.infra.api.model.SystemStats;
+import com.foilen.infra.api.response.ResponseMachineSetup;
+import com.foilen.infra.api.response.ResponseWithStatus;
 
 public class InfraMachineApiServiceImpl implements InfraMachineApiService {
 
@@ -25,17 +26,17 @@ public class InfraMachineApiServiceImpl implements InfraMachineApiService {
     }
 
     @Override
-    public MachineSetup getMachineSetup(String machineName) {
+    public ResponseMachineSetup getMachineSetup(String machineName) {
         Map<String, Object> uriVariables = new HashMap<>();
         uriVariables.put("machineName", machineName);
-        return infraApiService.get("/api/machine/{machineName}/setup", MachineSetup.class, uriVariables);
+        return infraApiService.get("/api/machine/{machineName}/setup", ResponseMachineSetup.class, uriVariables);
     }
 
     @Override
-    public void sendSystemStats(String machineName, List<SystemStats> systemStats) {
+    public ResponseWithStatus sendSystemStats(String machineName, List<SystemStats> systemStats) {
         Map<String, Object> uriVariables = new HashMap<>();
         uriVariables.put("machineName", machineName);
-        infraApiService.post("/api/machine/{machineName}/systemStats", systemStats, uriVariables);
+        return infraApiService.post("/api/machine/{machineName}/systemStats", systemStats, uriVariables, ResponseWithStatus.class);
     }
 
 }

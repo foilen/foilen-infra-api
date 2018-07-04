@@ -19,13 +19,22 @@ import com.foilen.smalltools.tools.AbstractBasics;
 public class ResponseWithStatus extends AbstractBasics {
 
     private List<String> errors = new ArrayList<>();
+    private List<String> warnings = new ArrayList<>();
 
     public void addError(String errorMessage) {
         errors.add(errorMessage);
     }
 
+    public void addWarning(String warningMessage) {
+        warnings.add(warningMessage);
+    }
+
     public List<String> getErrors() {
         return errors;
+    }
+
+    public List<String> getWarnings() {
+        return warnings;
     }
 
     public boolean isSuccess() {
@@ -34,6 +43,10 @@ public class ResponseWithStatus extends AbstractBasics {
 
     public void setErrors(List<String> errors) {
         this.errors = errors;
+    }
+
+    public void setWarnings(List<String> warnings) {
+        this.warnings = warnings;
     }
 
 }
