@@ -13,8 +13,9 @@ import com.foilen.infra.api.InfraApiUiException;
 import com.foilen.infra.plugin.v1.core.resource.IPResourceDefinition;
 import com.foilen.infra.plugin.v1.core.service.IPResourceService;
 import com.foilen.infra.plugin.v1.model.resource.IPResource;
+import com.foilen.smalltools.restapi.model.AbstractApiBase;
 
-public class ResourceDetails extends AbstractRequest {
+public class ResourceDetails extends AbstractApiBase {
 
     private String resourceType;
     private Object resource;

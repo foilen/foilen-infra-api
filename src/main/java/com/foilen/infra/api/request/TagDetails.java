@@ -9,7 +9,9 @@
  */
 package com.foilen.infra.api.request;
 
-public class TagDetails extends AbstractRequest {
+import com.foilen.smalltools.restapi.model.AbstractApiBase;
+
+public class TagDetails extends AbstractApiBase {
 
     private String tagName;
     private ResourceDetails resourcePk;

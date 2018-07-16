@@ -12,11 +12,9 @@ package com.foilen.infra.api.response;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.foilen.smalltools.tools.AbstractBasics;
+import com.foilen.smalltools.restapi.model.AbstractApiBase;
 
-@JsonIgnoreProperties(ignoreUnknown = true)
-public class ResponseWithStatus extends AbstractBasics {
+public class ResponseWithStatus extends AbstractApiBase {
 
     private List<String> errors = new ArrayList<>();
     private List<String> warnings = new ArrayList<>();

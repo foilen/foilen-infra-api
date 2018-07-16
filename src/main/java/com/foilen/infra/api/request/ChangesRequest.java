@@ -12,7 +12,9 @@ package com.foilen.infra.api.request;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ChangesRequest extends AbstractRequest {
+import com.foilen.smalltools.restapi.model.AbstractApiBase;
+
+public class ChangesRequest extends AbstractApiBase {
 
     private List<ResourceDetails> resourcesToAdd = new ArrayList<>();
     private List<ResourceToUpdateRequest> resourcesToUpdate = new ArrayList<>();

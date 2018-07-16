@@ -12,12 +12,11 @@ package com.foilen.infra.api.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.foilen.infra.resource.application.Application;
 import com.foilen.infra.resource.unixuser.UnixUser;
+import com.foilen.smalltools.restapi.model.AbstractApiBase;
 
-@JsonIgnoreProperties(ignoreUnknown = true)
-public class MachineSetup {
+public class MachineSetup extends AbstractApiBase {
 
     // UI service
     private String uiApiBaseUrl;

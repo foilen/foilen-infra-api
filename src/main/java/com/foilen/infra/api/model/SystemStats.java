@@ -13,14 +13,13 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.foilen.smalltools.restapi.model.AbstractApiBase;
 import com.foilen.smalltools.systemusage.results.NetworkInfo;
 
 /**
  * The details about the system.
  */
-@JsonIgnoreProperties(ignoreUnknown = true)
-public class SystemStats {
+public class SystemStats extends AbstractApiBase {
 
     private Date timestamp = new Date();
 

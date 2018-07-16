@@ -9,10 +9,9 @@
  */
 package com.foilen.infra.api.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.foilen.smalltools.restapi.model.AbstractApiBase;
 
-@JsonIgnoreProperties(ignoreUnknown = true)
-public class DiskStat {
+public class DiskStat extends AbstractApiBase {
 
     private String path;
     private boolean isRoot = true;

@@ -9,7 +9,9 @@
  */
 package com.foilen.infra.api.request;
 
-public class ResourceToUpdateRequest extends AbstractRequest {
+import com.foilen.smalltools.restapi.model.AbstractApiBase;
+
+public class ResourceToUpdateRequest extends AbstractApiBase {
 
     private ResourceDetails resourcePk;
     private ResourceDetails updatedResource;

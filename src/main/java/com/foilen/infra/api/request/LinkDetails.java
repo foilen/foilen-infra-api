@@ -9,7 +9,9 @@
  */
 package com.foilen.infra.api.request;
 
-public class LinkDetails extends AbstractRequest {
+import com.foilen.smalltools.restapi.model.AbstractApiBase;
+
+public class LinkDetails extends AbstractApiBase {
 
     private ResourceDetails fromResourcePk;
     private String linkType;
