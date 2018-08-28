@@ -7,10 +7,10 @@
     http://opensource.org/licenses/MIT
 
  */
-package com.foilen.infra.api;
+package com.foilen.infra.api.service;
 
 import com.foilen.infra.api.request.ChangesRequest;
-import com.foilen.infra.api.response.ResponseWithStatus;
+import com.foilen.smalltools.restapi.model.FormResult;
 
 public class InfraResourceApiServiceImpl implements InfraResourceApiService {
 
@@ -21,8 +21,8 @@ public class InfraResourceApiServiceImpl implements InfraResourceApiService {
     }
 
     @Override
-    public ResponseWithStatus applyChanges(ChangesRequest changesRequest) {
-        return infraApiService.post("/api/resource/applyChanges", changesRequest, ResponseWithStatus.class);
+    public FormResult applyChanges(ChangesRequest changesRequest) {
+        return infraApiService.post("/api/resource/applyChanges", changesRequest, FormResult.class);
     }
 
 }

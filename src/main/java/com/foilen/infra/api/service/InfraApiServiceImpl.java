@@ -7,7 +7,7 @@
     http://opensource.org/licenses/MIT
 
  */
-package com.foilen.infra.api;
+package com.foilen.infra.api.service;
 
 import java.net.URI;
 import java.security.KeyStore;
@@ -25,6 +25,7 @@ import org.springframework.http.client.support.BasicAuthorizationInterceptor;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriTemplate;
 
+import com.foilen.infra.api.InfraApiUiException;
 import com.foilen.smalltools.crypt.spongycastle.cert.RSACertificate;
 import com.foilen.smalltools.tools.AbstractBasics;
 import com.foilen.smalltools.tools.JsonTools;

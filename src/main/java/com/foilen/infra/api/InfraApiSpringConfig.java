@@ -14,6 +14,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 
+import com.foilen.infra.api.service.InfraApiService;
+import com.foilen.infra.api.service.InfraApiServiceImpl;
 import com.foilen.smalltools.tools.FileTools;
 import com.foilen.smalltools.tools.JsonTools;
 import com.google.common.base.Strings;

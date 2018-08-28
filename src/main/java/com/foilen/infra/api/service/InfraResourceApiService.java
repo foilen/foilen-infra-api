@@ -7,13 +7,13 @@
     http://opensource.org/licenses/MIT
 
  */
-package com.foilen.infra.api;
+package com.foilen.infra.api.service;
 
 import com.foilen.infra.api.request.ChangesRequest;
-import com.foilen.infra.api.response.ResponseWithStatus;
+import com.foilen.smalltools.restapi.model.FormResult;
 
 public interface InfraResourceApiService {
 
-    ResponseWithStatus applyChanges(ChangesRequest changesRequest);
+    FormResult applyChanges(ChangesRequest changesRequest);
 
 }

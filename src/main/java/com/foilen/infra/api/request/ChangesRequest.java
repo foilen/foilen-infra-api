@@ -12,6 +12,9 @@ package com.foilen.infra.api.request;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.foilen.infra.api.model.LinkDetails;
+import com.foilen.infra.api.model.ResourceDetails;
+import com.foilen.infra.api.model.TagDetails;
 import com.foilen.smalltools.restapi.model.AbstractApiBase;
 
 public class ChangesRequest extends AbstractApiBase {

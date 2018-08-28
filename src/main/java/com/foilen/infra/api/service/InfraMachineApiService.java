@@ -7,13 +7,13 @@
     http://opensource.org/licenses/MIT
 
  */
-package com.foilen.infra.api;
+package com.foilen.infra.api.service;
 
 import java.util.List;
 
 import com.foilen.infra.api.model.SystemStats;
 import com.foilen.infra.api.response.ResponseMachineSetup;
-import com.foilen.infra.api.response.ResponseWithStatus;
+import com.foilen.smalltools.restapi.model.FormResult;
 
 public interface InfraMachineApiService {
 
@@ -34,6 +34,6 @@ public interface InfraMachineApiService {
      * @param systemStats
      *            the recorded stats
      */
-    ResponseWithStatus sendSystemStats(String machineName, List<SystemStats> systemStats);
+    FormResult sendSystemStats(String machineName, List<SystemStats> systemStats);
 
 }

@@ -7,7 +7,7 @@
     http://opensource.org/licenses/MIT
 
  */
-package com.foilen.infra.api;
+package com.foilen.infra.api.service;
 
 public interface InfraApiService {
 

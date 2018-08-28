@@ -7,7 +7,7 @@
     http://opensource.org/licenses/MIT
 
  */
-package com.foilen.infra.api;
+package com.foilen.infra.api.service;
 
 import java.util.HashMap;
 import java.util.List;
@@ -15,7 +15,7 @@ import java.util.Map;
 
 import com.foilen.infra.api.model.SystemStats;
 import com.foilen.infra.api.response.ResponseMachineSetup;
-import com.foilen.infra.api.response.ResponseWithStatus;
+import com.foilen.smalltools.restapi.model.FormResult;
 
 public class InfraMachineApiServiceImpl implements InfraMachineApiService {
 
@@ -33,10 +33,10 @@ public class InfraMachineApiServiceImpl implements InfraMachineApiService {
     }
 
     @Override
-    public ResponseWithStatus sendSystemStats(String machineName, List<SystemStats> systemStats) {
+    public FormResult sendSystemStats(String machineName, List<SystemStats> systemStats) {
         Map<String, Object> uriVariables = new HashMap<>();
         uriVariables.put("machineName", machineName);
-        return infraApiService.post("/api/machine/{machineName}/systemStats", systemStats, uriVariables, ResponseWithStatus.class);
+        return infraApiService.post("/api/machine/{machineName}/systemStats", systemStats, uriVariables, FormResult.class);
     }
 
 }
