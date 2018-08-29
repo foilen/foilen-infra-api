@@ -17,10 +17,10 @@ import com.foilen.infra.api.model.ResourceDetails;
 import com.foilen.infra.api.model.TagDetails;
 import com.foilen.smalltools.restapi.model.AbstractApiBase;
 
-public class ChangesRequest extends AbstractApiBase {
+public class RequestChanges extends AbstractApiBase {
 
     private List<ResourceDetails> resourcesToAdd = new ArrayList<>();
-    private List<ResourceToUpdateRequest> resourcesToUpdate = new ArrayList<>();
+    private List<RequestResourceToUpdate> resourcesToUpdate = new ArrayList<>();
     private List<ResourceDetails> resourcesToDeletePk = new ArrayList<>();
 
     private List<TagDetails> tagsToAdd = new ArrayList<>();
@@ -45,7 +45,7 @@ public class ChangesRequest extends AbstractApiBase {
         return resourcesToDeletePk;
     }
 
-    public List<ResourceToUpdateRequest> getResourcesToUpdate() {
+    public List<RequestResourceToUpdate> getResourcesToUpdate() {
         return resourcesToUpdate;
     }
 
@@ -73,7 +73,7 @@ public class ChangesRequest extends AbstractApiBase {
         this.resourcesToDeletePk = resourcesToDeletePk;
     }
 
-    public void setResourcesToUpdate(List<ResourceToUpdateRequest> resourcesToUpdate) {
+    public void setResourcesToUpdate(List<RequestResourceToUpdate> resourcesToUpdate) {
         this.resourcesToUpdate = resourcesToUpdate;
     }
 

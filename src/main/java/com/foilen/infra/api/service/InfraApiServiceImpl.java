@@ -22,7 +22,9 @@ import org.apache.http.ssl.SSLContextBuilder;
 import org.springframework.http.client.ClientHttpRequestFactory;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.http.client.support.BasicAuthorizationInterceptor;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.UriComponentsBuilder;
 import org.springframework.web.util.UriTemplate;
 
 import com.foilen.infra.api.InfraApiUiException;
@@ -74,14 +76,23 @@ public class InfraApiServiceImpl extends AbstractBasics implements InfraApiServi
 
     protected <T> T get(String relativeUrl, Class<T> responseClass) {
         String url = infraBaseUrl + relativeUrl;
-        logger.debug("[GET] {} for {},", url, responseClass);
+        logger.debug("[GET] {} for {}", url, responseClass);
         return restTemplate.getForObject(url, responseClass);
     }
 
     protected <T> T get(String relativeUrl, Class<T> responseClass, Map<String, ?> uriVariables) {
         String url = infraBaseUrl + relativeUrl;
-        logger.debug("[GET] {} with variables {} for {},", url, uriVariables, responseClass);
+        logger.debug("[GET] {} with variables {} for {}", url, uriVariables, responseClass);
         return restTemplate.getForObject(url, responseClass, uriVariables);
+    }
+
+    protected <T> T get(String relativeUrl, Class<T> responseClass, Map<String, ?> uriVariables, MultiValueMap<String, String> queryParams) {
+        String url = infraBaseUrl + relativeUrl;
+        logger.debug("[GET] {} with variables {} and query params {} for {}", url, uriVariables, queryParams, responseClass);
+        url = UriComponentsBuilder.fromUriString(url) //
+                .queryParams(queryParams) //
+                .buildAndExpand(uriVariables).toUriString();
+        return restTemplate.getForObject(url, responseClass);
     }
 
     public String getInfraBaseUrl() {
@@ -105,7 +116,7 @@ public class InfraApiServiceImpl extends AbstractBasics implements InfraApiServi
     protected <T> T post(String relativeUrl, Object postData, Class<T> responseClass) {
         String url = infraBaseUrl + relativeUrl;
         if (logger.isDebugEnabled()) {
-            logger.debug("[POST] {} for {} with data {},", url, responseClass, JsonTools.compactPrint(postData));
+            logger.debug("[POST] {} for {} with data {}", url, responseClass, JsonTools.compactPrint(postData));
         }
         return restTemplate.postForObject(url, postData, responseClass);
     }
@@ -113,7 +124,7 @@ public class InfraApiServiceImpl extends AbstractBasics implements InfraApiServi
     protected <T> T post(String relativeUrl, Object postData, Map<String, ?> uriVariables, Class<T> responseClass) {
         String url = infraBaseUrl + relativeUrl;
         if (logger.isDebugEnabled()) {
-            logger.debug("[POST] {} with variables {} for {} with data {},", url, uriVariables, responseClass, JsonTools.compactPrint(postData));
+            logger.debug("[POST] {} with variables {} for {} with data {}", url, uriVariables, responseClass, JsonTools.compactPrint(postData));
         }
         URI uri = new UriTemplate(url).expand(uriVariables);
         return restTemplate.postForObject(uri, postData, responseClass);

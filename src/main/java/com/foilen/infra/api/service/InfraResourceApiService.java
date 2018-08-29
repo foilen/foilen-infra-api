@@ -9,11 +9,47 @@
  */
 package com.foilen.infra.api.service;
 
-import com.foilen.infra.api.request.ChangesRequest;
+import com.foilen.infra.api.request.RequestChanges;
+import com.foilen.infra.api.request.RequestResourceSearch;
+import com.foilen.infra.api.response.ResponseResourceBucket;
+import com.foilen.infra.api.response.ResponseResourceBuckets;
+import com.foilen.infra.api.response.ResponseResourceTypesDetails;
 import com.foilen.smalltools.restapi.model.FormResult;
 
 public interface InfraResourceApiService {
 
-    FormResult applyChanges(ChangesRequest changesRequest);
+    /**
+     * Apply some changes on the infrastructure.
+     *
+     * @param changes
+     *            the changes
+     * @return the results
+     */
+    FormResult applyChanges(RequestChanges changes);
+
+    /**
+     * Get all the resources.
+     *
+     * @param resourceSearch
+     *            the search
+     * @return the resources
+     */
+    ResponseResourceBuckets resourceFindAll(RequestResourceSearch resourceSearch);
+
+    /**
+     * Get a single resource if present. Will give an error if there are more than 1.
+     *
+     * @param resourceSearch
+     *            the search
+     * @return a single resource if present
+     */
+    ResponseResourceBucket resourceFindOne(RequestResourceSearch resourceSearch);
+
+    /**
+     * List all the available resource types.
+     *
+     * @return the resource types details
+     */
+    ResponseResourceTypesDetails typeFindAll();
 
 }

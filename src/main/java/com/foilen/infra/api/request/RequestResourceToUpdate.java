@@ -12,15 +12,15 @@ package com.foilen.infra.api.request;
 import com.foilen.infra.api.model.ResourceDetails;
 import com.foilen.smalltools.restapi.model.AbstractApiBase;
 
-public class ResourceToUpdateRequest extends AbstractApiBase {
+public class RequestResourceToUpdate extends AbstractApiBase {
 
     private ResourceDetails resourcePk;
     private ResourceDetails updatedResource;
 
-    public ResourceToUpdateRequest() {
+    public RequestResourceToUpdate() {
     }
 
-    public ResourceToUpdateRequest(ResourceDetails resourcePk, ResourceDetails updatedResource) {
+    public RequestResourceToUpdate(ResourceDetails resourcePk, ResourceDetails updatedResource) {
         this.resourcePk = resourcePk;
         this.updatedResource = updatedResource;
     }
