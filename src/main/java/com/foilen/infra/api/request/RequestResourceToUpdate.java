@@ -33,12 +33,14 @@ public class RequestResourceToUpdate extends AbstractApiBase {
         return updatedResource;
     }
 
-    public void setResourcePk(ResourceDetails resourcePk) {
+    public RequestResourceToUpdate setResourcePk(ResourceDetails resourcePk) {
         this.resourcePk = resourcePk;
+        return this;
     }
 
-    public void setUpdatedResource(ResourceDetails updatedResource) {
+    public RequestResourceToUpdate setUpdatedResource(ResourceDetails updatedResource) {
         this.updatedResource = updatedResource;
+        return this;
     }
 
 }

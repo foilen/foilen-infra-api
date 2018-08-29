@@ -9,6 +9,7 @@
  */
 package com.foilen.infra.api.service;
 
+import com.foilen.infra.api.model.ResourceDetails;
 import com.foilen.infra.api.request.RequestChanges;
 import com.foilen.infra.api.request.RequestResourceSearch;
 import com.foilen.infra.api.response.ResponseResourceBucket;
@@ -44,6 +45,15 @@ public interface InfraResourceApiService {
      * @return a single resource if present
      */
     ResponseResourceBucket resourceFindOne(RequestResourceSearch resourceSearch);
+
+    /**
+     * Like {@link #resourceFindOne(RequestResourceSearch)}, but will trim the search for only the properties that are part of the PK.
+     *
+     * @param resourceDetails
+     *            the resource details
+     * @return a single resource if present
+     */
+    ResponseResourceBucket resourceFindOneByPk(ResourceDetails resourceDetails);
 
     /**
      * List all the available resource types.

@@ -57,32 +57,39 @@ public class RequestChanges extends AbstractApiBase {
         return tagsToDelete;
     }
 
-    public void setLinksToAdd(List<LinkDetails> linksToAdd) {
+    public RequestChanges setLinksToAdd(List<LinkDetails> linksToAdd) {
         this.linksToAdd = linksToAdd;
+        return this;
     }
 
-    public void setLinksToDelete(List<LinkDetails> linksToDelete) {
+    public RequestChanges setLinksToDelete(List<LinkDetails> linksToDelete) {
         this.linksToDelete = linksToDelete;
+        return this;
     }
 
-    public void setResourcesToAdd(List<ResourceDetails> resourcesToAdd) {
+    public RequestChanges setResourcesToAdd(List<ResourceDetails> resourcesToAdd) {
         this.resourcesToAdd = resourcesToAdd;
+        return this;
     }
 
-    public void setResourcesToDeletePk(List<ResourceDetails> resourcesToDeletePk) {
+    public RequestChanges setResourcesToDeletePk(List<ResourceDetails> resourcesToDeletePk) {
         this.resourcesToDeletePk = resourcesToDeletePk;
+        return this;
     }
 
-    public void setResourcesToUpdate(List<RequestResourceToUpdate> resourcesToUpdate) {
+    public RequestChanges setResourcesToUpdate(List<RequestResourceToUpdate> resourcesToUpdate) {
         this.resourcesToUpdate = resourcesToUpdate;
+        return this;
     }
 
-    public void setTagsToAdd(List<TagDetails> tagsToAdd) {
+    public RequestChanges setTagsToAdd(List<TagDetails> tagsToAdd) {
         this.tagsToAdd = tagsToAdd;
+        return this;
     }
 
-    public void setTagsToDelete(List<TagDetails> tagsToDelete) {
+    public RequestChanges setTagsToDelete(List<TagDetails> tagsToDelete) {
         this.tagsToDelete = tagsToDelete;
+        return this;
     }
 
 }

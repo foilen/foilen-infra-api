@@ -52,10 +52,12 @@ dependencies {
   compile 'org.slf4j:slf4j-api:1.7.25'
   
   // Plugin
+  compile "com.foilen:foilen-infra-plugin-model:$foilenInfraPluginVersion"
   compile "com.foilen:foilen-infra-resource-application:0.1.1"
   compile "com.foilen:foilen-infra-resource-unixuser:0.1.3"
 
   // Spring
+  compile "commons-logging:commons-logging"
   compile "org.apache.httpcomponents:httpclient"
   compile "org.springframework:spring-web"
   

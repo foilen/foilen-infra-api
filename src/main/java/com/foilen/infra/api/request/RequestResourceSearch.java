@@ -32,16 +32,19 @@ public class RequestResourceSearch extends AbstractApiBase {
         return tag;
     }
 
-    public void setProperties(Map<String, Object> properties) {
+    public RequestResourceSearch setProperties(Map<String, Object> properties) {
         this.properties = properties;
+        return this;
     }
 
-    public void setResourceType(String resourceType) {
+    public RequestResourceSearch setResourceType(String resourceType) {
         this.resourceType = resourceType;
+        return this;
     }
 
-    public void setTag(String tag) {
+    public RequestResourceSearch setTag(String tag) {
         this.tag = tag;
+        return this;
     }
 
 }

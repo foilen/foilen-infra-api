@@ -13,14 +13,14 @@ import com.foilen.smalltools.restapi.model.AbstractApiBase;
 
 public class PartialLinkDetails extends AbstractApiBase {
 
-    private ResourceDetails otherResourcePk;
+    private ResourceDetails otherResource;
     private String linkType;
 
     public PartialLinkDetails() {
     }
 
-    public PartialLinkDetails(ResourceDetails otherResourcePk, String linkType) {
-        this.otherResourcePk = otherResourcePk;
+    public PartialLinkDetails(ResourceDetails otherResource, String linkType) {
+        this.otherResource = otherResource;
         this.linkType = linkType;
     }
 
@@ -28,16 +28,16 @@ public class PartialLinkDetails extends AbstractApiBase {
         return linkType;
     }
 
-    public ResourceDetails getOtherResourcePk() {
-        return otherResourcePk;
+    public ResourceDetails getOtherResource() {
+        return otherResource;
     }
 
     public void setLinkType(String linkType) {
         this.linkType = linkType;
     }
 
-    public void setOtherResourcePk(ResourceDetails otherResourcePk) {
-        this.otherResourcePk = otherResourcePk;
+    public void setOtherResource(ResourceDetails otherResource) {
+        this.otherResource = otherResource;
     }
 
 }

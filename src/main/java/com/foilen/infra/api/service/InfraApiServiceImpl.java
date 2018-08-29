@@ -10,6 +10,7 @@
 package com.foilen.infra.api.service;
 
 import java.net.URI;
+import java.net.URISyntaxException;
 import java.security.KeyStore;
 import java.util.Map;
 
@@ -126,7 +127,16 @@ public class InfraApiServiceImpl extends AbstractBasics implements InfraApiServi
         if (logger.isDebugEnabled()) {
             logger.debug("[POST] {} with variables {} for {} with data {}", url, uriVariables, responseClass, JsonTools.compactPrint(postData));
         }
-        URI uri = new UriTemplate(url).expand(uriVariables);
+        URI uri = null;
+        if (uriVariables == null) {
+            try {
+                uri = new URI(url);
+            } catch (URISyntaxException e) {
+                throw new InfraApiUiException("Invalid uri", e);
+            }
+        } else {
+            uri = new UriTemplate(url).expand(uriVariables);
+        }
         return restTemplate.postForObject(uri, postData, responseClass);
     }
 
