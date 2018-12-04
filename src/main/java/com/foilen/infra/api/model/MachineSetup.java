@@ -12,8 +12,6 @@ package com.foilen.infra.api.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.foilen.infra.resource.application.Application;
-import com.foilen.infra.resource.unixuser.UnixUser;
 import com.foilen.smalltools.restapi.model.AbstractApiBase;
 
 public class MachineSetup extends AbstractApiBase {
