@@ -12,10 +12,10 @@ package com.foilen.infra.api.service;
 import com.foilen.infra.api.model.ResourceDetails;
 import com.foilen.infra.api.request.RequestChanges;
 import com.foilen.infra.api.request.RequestResourceSearch;
+import com.foilen.infra.api.response.ResponseResourceAppliedChanges;
 import com.foilen.infra.api.response.ResponseResourceBucket;
 import com.foilen.infra.api.response.ResponseResourceBuckets;
 import com.foilen.infra.api.response.ResponseResourceTypesDetails;
-import com.foilen.smalltools.restapi.model.FormResult;
 
 public interface InfraResourceApiService {
 
@@ -26,7 +26,7 @@ public interface InfraResourceApiService {
      *            the changes
      * @return the results
      */
-    FormResult applyChanges(RequestChanges changes);
+    ResponseResourceAppliedChanges applyChanges(RequestChanges changes);
 
     /**
      * Get all the resources.

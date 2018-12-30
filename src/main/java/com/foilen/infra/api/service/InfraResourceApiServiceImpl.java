@@ -21,10 +21,10 @@ import com.foilen.infra.api.model.ResourceDetails;
 import com.foilen.infra.api.model.ResourceTypeDetails;
 import com.foilen.infra.api.request.RequestChanges;
 import com.foilen.infra.api.request.RequestResourceSearch;
+import com.foilen.infra.api.response.ResponseResourceAppliedChanges;
 import com.foilen.infra.api.response.ResponseResourceBucket;
 import com.foilen.infra.api.response.ResponseResourceBuckets;
 import com.foilen.infra.api.response.ResponseResourceTypesDetails;
-import com.foilen.smalltools.restapi.model.FormResult;
 
 public class InfraResourceApiServiceImpl implements InfraResourceApiService {
 
@@ -38,8 +38,8 @@ public class InfraResourceApiServiceImpl implements InfraResourceApiService {
     }
 
     @Override
-    public FormResult applyChanges(RequestChanges changesRequest) {
-        return infraApiService.post("/api/resource/applyChanges", changesRequest, FormResult.class);
+    public ResponseResourceAppliedChanges applyChanges(RequestChanges changesRequest) {
+        return infraApiService.post("/api/resource/applyChanges", changesRequest, ResponseResourceAppliedChanges.class);
     }
 
     @Override
