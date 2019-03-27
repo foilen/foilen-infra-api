@@ -96,6 +96,11 @@ public class InfraApiServiceImpl extends AbstractBasics implements InfraApiServi
         return restTemplate.getForObject(url, responseClass);
     }
 
+    @Override
+    public InfraAlertApiService getInfraAlertApiService() {
+        return new InfraAlertApiServiceImpl(this);
+    }
+
     public String getInfraBaseUrl() {
         return infraBaseUrl;
     }

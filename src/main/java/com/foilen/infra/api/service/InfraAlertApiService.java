@@ -9,12 +9,10 @@
  */
 package com.foilen.infra.api.service;
 
-public interface InfraApiService {
+import com.foilen.smalltools.restapi.model.FormResult;
 
-    InfraAlertApiService getInfraAlertApiService();
+public interface InfraAlertApiService {
 
-    InfraMachineApiService getInfraMachineApiService();
-
-    InfraResourceApiService getInfraResourceApiService();
+    FormResult sendAlert(String subject, String content);
 
 }
