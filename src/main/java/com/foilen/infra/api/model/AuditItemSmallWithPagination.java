@@ -20,20 +20,20 @@ public class AuditItemSmallWithPagination extends AbstractApiBase {
     private List<AuditItemSmall> items = new ArrayList<>();
     private ApiPagination pagination;
 
-    public ApiPagination getPagination() {
-        return pagination;
-    }
-
-    public void setPagination(ApiPagination pagination) {
-        this.pagination = pagination;
-    }
-
     public List<AuditItemSmall> getItems() {
         return items;
     }
 
+    public ApiPagination getPagination() {
+        return pagination;
+    }
+
     public void setItems(List<AuditItemSmall> items) {
         this.items = items;
+    }
+
+    public void setPagination(ApiPagination pagination) {
+        this.pagination = pagination;
     }
 
 }
