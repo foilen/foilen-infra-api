@@ -4,7 +4,7 @@ buildscript {
     jcenter()
   }
   dependencies {
-    classpath 'io.spring.gradle:dependency-management-plugin:1.0.3.RELEASE'
+    classpath 'io.spring.gradle:dependency-management-plugin:1.0.7.RELEASE'
   }
 }
 
@@ -32,7 +32,7 @@ targetCompatibility = 1.8
 
 dependencyManagement {
   imports {
-    mavenBom 'io.spring.platform:platform-bom:Brussels-SR5'
+    mavenBom 'io.spring.platform:platform-bom:Brussels-SR16'
   }
 }
 
@@ -49,7 +49,7 @@ dependencies {
   compile "com.foilen:jl-smalltools:$smalltoolsVersion"
   compile "com.google.guava:guava"
   compile "org.apache.commons:commons-lang3"
-  compile 'org.slf4j:slf4j-api:1.7.25'
+  compile 'org.slf4j:slf4j-api:1.7.26'
   
   // Plugin
   compile "com.foilen:foilen-infra-plugin-model:$foilenInfraPluginVersion"
@@ -106,5 +106,3 @@ publishing {
     }
   }
 }
-
-task wrapper(type: Wrapper) { gradleVersion = '4.7' }
