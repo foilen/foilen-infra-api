@@ -61,6 +61,7 @@ dependencies {
   
   // Test
   testCompile "junit:junit"
+  testCompile 'org.springframework.data:spring-data-jpa:1.11.7.RELEASE'
 }
 
 task sourcesJar(type: Jar, dependsOn: classes) {

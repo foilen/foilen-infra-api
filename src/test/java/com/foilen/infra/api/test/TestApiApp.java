@@ -23,6 +23,7 @@ import com.foilen.infra.api.model.SystemStats;
 import com.foilen.infra.api.request.RequestChanges;
 import com.foilen.infra.api.request.RequestResourceSearch;
 import com.foilen.infra.api.response.ResponseResourceBucket;
+import com.foilen.infra.api.service.InfraAlertApiService;
 import com.foilen.infra.api.service.InfraApiServiceImpl;
 import com.foilen.infra.api.service.InfraMachineApiService;
 import com.foilen.infra.api.service.InfraResourceApiService;
@@ -124,6 +125,11 @@ public class TestApiApp {
         oneFound.getItem().getLinksTo().forEach(linkTo -> {
             execute("resourceApiService.resourceFindOneByPk", () -> resourceApiService.resourceFindOneByPk(linkTo.getOtherResource()));
         });
+
+        // Send alert
+        System.out.println("---[ Send alert ]---");
+        InfraAlertApiService infraAlertApiService = infraApiService.getInfraAlertApiService();
+        execute("alertApiService.sendAlert", () -> infraAlertApiService.sendAlert("The subject", "The content"));
 
     }
 

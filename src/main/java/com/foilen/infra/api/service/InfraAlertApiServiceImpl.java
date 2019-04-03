@@ -25,7 +25,7 @@ public class InfraAlertApiServiceImpl implements InfraAlertApiService {
         RequestAlert requestAlert = new RequestAlert();
         requestAlert.setSubject(subject);
         requestAlert.setContent(content);
-        return infraApiService.post("/api/alert", requestAlert, null, FormResult.class);
+        return infraApiService.post("/api/alert/", requestAlert, null, FormResult.class);
     }
 
 }
