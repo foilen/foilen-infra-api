@@ -22,6 +22,7 @@ public class RequestChanges extends AbstractApiBase {
     private List<ResourceDetails> resourcesToAdd = new ArrayList<>();
     private List<RequestResourceToUpdate> resourcesToUpdate = new ArrayList<>();
     private List<ResourceDetails> resourcesToDeletePk = new ArrayList<>();
+    private List<ResourceDetails> resourcesToRefreshPk = new ArrayList<>();
 
     private List<TagDetails> tagsToAdd = new ArrayList<>();
     private List<TagDetails> tagsToDelete = new ArrayList<>();
@@ -43,6 +44,10 @@ public class RequestChanges extends AbstractApiBase {
 
     public List<ResourceDetails> getResourcesToDeletePk() {
         return resourcesToDeletePk;
+    }
+
+    public List<ResourceDetails> getResourcesToRefreshPk() {
+        return resourcesToRefreshPk;
     }
 
     public List<RequestResourceToUpdate> getResourcesToUpdate() {
@@ -74,6 +79,11 @@ public class RequestChanges extends AbstractApiBase {
 
     public RequestChanges setResourcesToDeletePk(List<ResourceDetails> resourcesToDeletePk) {
         this.resourcesToDeletePk = resourcesToDeletePk;
+        return this;
+    }
+
+    public RequestChanges setResourcesToRefreshPk(List<ResourceDetails> resourcesToRefreshPk) {
+        this.resourcesToRefreshPk = resourcesToRefreshPk;
         return this;
     }
 
