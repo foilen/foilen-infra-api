@@ -9,7 +9,7 @@ buildscript {
 }
 
 plugins {
-  id "com.jfrog.bintray" version "1.7.3"
+  id "com.jfrog.bintray" version "1.8.4"
 }
 
 apply plugin: 'eclipse'
@@ -27,8 +27,7 @@ repositories {
   mavenCentral()
 }
 
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
+sourceCompatibility = 1.11
 
 dependencyManagement {
   imports {
@@ -60,8 +59,14 @@ dependencies {
   compile "org.springframework:spring-web"
   
   // Test
-  testCompile "junit:junit"
+  testCompileOnly 'junit:junit:4.12'
+  testImplementation "org.junit.jupiter:junit-jupiter-api:$junitVersion"
+  testRuntimeOnly "org.junit.vintage:junit-vintage-engine:$junitVersion"
   testCompile 'org.springframework.data:spring-data-jpa:1.11.7.RELEASE'
+}
+
+test {
+  useJUnitPlatform()
 }
 
 task sourcesJar(type: Jar, dependsOn: classes) {
