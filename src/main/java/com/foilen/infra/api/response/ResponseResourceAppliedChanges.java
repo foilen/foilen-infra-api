@@ -21,9 +21,7 @@ public class ResponseResourceAppliedChanges extends FormResult {
 
     // Reporting
     private Map<String, Integer> updateCountByResourceId = new HashMap<>();
-    private Map<String, Long> executionTimeInMsByUpdateHandler = new HashMap<>();
-    private Map<String, Long> updateDirectCheckByUpdateHandler = new HashMap<>();
-    private Map<String, Long> updateFarCheckByUpdateHandler = new HashMap<>();
+    private Map<String, Long> executionTimeInMsByActionHandler = new HashMap<>();
 
     // Auditing
     private AuditItemSmallWithPagination auditItems = new AuditItemSmallWithPagination();
@@ -32,8 +30,8 @@ public class ResponseResourceAppliedChanges extends FormResult {
         return auditItems;
     }
 
-    public Map<String, Long> getExecutionTimeInMsByUpdateHandler() {
-        return executionTimeInMsByUpdateHandler;
+    public Map<String, Long> getExecutionTimeInMsByActionHandler() {
+        return executionTimeInMsByActionHandler;
     }
 
     public String getTxId() {
@@ -44,20 +42,12 @@ public class ResponseResourceAppliedChanges extends FormResult {
         return updateCountByResourceId;
     }
 
-    public Map<String, Long> getUpdateDirectCheckByUpdateHandler() {
-        return updateDirectCheckByUpdateHandler;
-    }
-
-    public Map<String, Long> getUpdateFarCheckByUpdateHandler() {
-        return updateFarCheckByUpdateHandler;
-    }
-
     public void setAuditItems(AuditItemSmallWithPagination auditItems) {
         this.auditItems = auditItems;
     }
 
-    public void setExecutionTimeInMsByUpdateHandler(Map<String, Long> executionTimeInMsByUpdateHandler) {
-        this.executionTimeInMsByUpdateHandler = executionTimeInMsByUpdateHandler;
+    public void setExecutionTimeInMsByActionHandler(Map<String, Long> executionTimeInMsByActionHandler) {
+        this.executionTimeInMsByActionHandler = executionTimeInMsByActionHandler;
     }
 
     public void setTxId(String txId) {
@@ -66,14 +56,6 @@ public class ResponseResourceAppliedChanges extends FormResult {
 
     public void setUpdateCountByResourceId(Map<String, Integer> updateCountByResourceId) {
         this.updateCountByResourceId = updateCountByResourceId;
-    }
-
-    public void setUpdateDirectCheckByUpdateHandler(Map<String, Long> updateDirectCheckByUpdateHandler) {
-        this.updateDirectCheckByUpdateHandler = updateDirectCheckByUpdateHandler;
-    }
-
-    public void setUpdateFarCheckByUpdateHandler(Map<String, Long> updateFarCheckByUpdateHandler) {
-        this.updateFarCheckByUpdateHandler = updateFarCheckByUpdateHandler;
     }
 
 }
