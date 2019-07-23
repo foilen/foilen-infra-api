@@ -43,18 +43,7 @@ public class InfraResourceApiServiceImpl implements InfraResourceApiService {
     }
 
     @Override
-    public ResponseResourceBuckets resourceFindAll(RequestResourceSearch resourceSearch) {
-        return infraApiService.post("/api/resource/resourceFindAll", resourceSearch, null, ResponseResourceBuckets.class);
-    }
-
-    @Override
-    public ResponseResourceBucket resourceFindOne(RequestResourceSearch resourceSearch) {
-        return infraApiService.post("/api/resource/resourceFindOne", resourceSearch, null, ResponseResourceBucket.class);
-    }
-
-    @Override
-    public ResponseResourceBucket resourceFindOneByPk(ResourceDetails resourceDetails) {
-
+    public Map<String, Object> onlyPkValues(ResourceDetails resourceDetails) {
         if (resourceTypeDetailsByResourceTypeExpirationTime < System.currentTimeMillis()) {
             typeFindAll();
         }
@@ -80,9 +69,24 @@ public class InfraResourceApiServiceImpl implements InfraResourceApiService {
             });
         }
 
+        return properties;
+    }
+
+    @Override
+    public ResponseResourceBuckets resourceFindAll(RequestResourceSearch resourceSearch) {
+        return infraApiService.post("/api/resource/resourceFindAll", resourceSearch, null, ResponseResourceBuckets.class);
+    }
+
+    @Override
+    public ResponseResourceBucket resourceFindOne(RequestResourceSearch resourceSearch) {
+        return infraApiService.post("/api/resource/resourceFindOne", resourceSearch, null, ResponseResourceBucket.class);
+    }
+
+    @Override
+    public ResponseResourceBucket resourceFindOneByPk(ResourceDetails resourceDetails) {
         return resourceFindOne(new RequestResourceSearch() //
-                .setResourceType(resourceType) //
-                .setProperties(properties) //
+                .setResourceType(resourceDetails.getResourceType()) //
+                .setProperties(onlyPkValues(resourceDetails)) //
         );
     }
 

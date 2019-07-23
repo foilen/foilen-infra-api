@@ -9,6 +9,8 @@
  */
 package com.foilen.infra.api.service;
 
+import java.util.Map;
+
 import com.foilen.infra.api.model.ResourceDetails;
 import com.foilen.infra.api.request.RequestChanges;
 import com.foilen.infra.api.request.RequestResourceSearch;
@@ -27,6 +29,15 @@ public interface InfraResourceApiService {
      * @return the results
      */
     ResponseResourceAppliedChanges applyChanges(RequestChanges changes);
+
+    /**
+     * Provided a resource details, returns a Map with only the primary keys values.
+     *
+     * @param resourceDetails
+     *            the resource details
+     * @return the map with the primary keys values
+     */
+    Map<String, Object> onlyPkValues(ResourceDetails resourceDetails);
 
     /**
      * Get all the resources.
