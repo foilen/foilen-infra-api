@@ -7,33 +7,33 @@
     http://opensource.org/licenses/MIT
 
  */
-package com.foilen.infra.api.model;
+package com.foilen.infra.api.model.resource;
 
 import com.foilen.smalltools.restapi.model.AbstractApiBase;
 
-public class ResourceDetailsSmall extends AbstractApiBase {
+public class ResourceDetails extends AbstractApiBase {
 
     private String resourceType;
-    private String resourceName;
+    private Object resource;
 
-    public ResourceDetailsSmall() {
+    public ResourceDetails() {
     }
 
-    public ResourceDetailsSmall(String resourceType, String resourceName) {
+    public ResourceDetails(String resourceType, Object resource) {
         this.resourceType = resourceType;
-        this.resourceName = resourceName;
+        this.resource = resource;
     }
 
-    public String getResourceName() {
-        return resourceName;
+    public Object getResource() {
+        return resource;
     }
 
     public String getResourceType() {
         return resourceType;
     }
 
-    public void setResourceName(String resourceName) {
-        this.resourceName = resourceName;
+    public void setResource(Object resource) {
+        this.resource = resource;
     }
 
     public void setResourceType(String resourceType) {

@@ -11,7 +11,7 @@ package com.foilen.infra.api.service;
 
 import java.util.Map;
 
-import com.foilen.infra.api.model.ResourceDetails;
+import com.foilen.infra.api.model.resource.ResourceDetails;
 import com.foilen.infra.api.request.RequestChanges;
 import com.foilen.infra.api.request.RequestResourceSearch;
 import com.foilen.infra.api.response.ResponseResourceAppliedChanges;
@@ -47,6 +47,22 @@ public interface InfraResourceApiService {
      * @return the resources
      */
     ResponseResourceBuckets resourceFindAll(RequestResourceSearch resourceSearch);
+
+    /**
+     * Get all the resources without owners.
+     *
+     * @return the resources
+     */
+    ResponseResourceBuckets resourceFindAllWithoutOwner();
+
+    /**
+     * Get a single resource if present.
+     *
+     * @param resourceId
+     *            the resource id
+     * @return a single resource if present
+     */
+    ResponseResourceBucket resourceFindById(String resourceId);
 
     /**
      * Get a single resource if present. Will give an error if there are more than 1.

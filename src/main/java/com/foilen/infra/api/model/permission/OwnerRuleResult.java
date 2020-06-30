@@ -7,11 +7,17 @@
     http://opensource.org/licenses/MIT
 
  */
-package com.foilen.infra.api.response;
+package com.foilen.infra.api.model.permission;
 
-import com.foilen.infra.api.model.machine.MachineSetup;
 import com.foilen.smalltools.restapi.model.AbstractSingleResult;
 
-public class ResponseMachineSetup extends AbstractSingleResult<MachineSetup> {
+public class OwnerRuleResult extends AbstractSingleResult<OwnerRule> {
+
+    public OwnerRuleResult() {
+    }
+
+    public OwnerRuleResult(OwnerRule item) {
+        this.setItem(item);
+    }
 
 }

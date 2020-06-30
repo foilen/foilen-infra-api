@@ -9,7 +9,7 @@
  */
 package com.foilen.infra.api.response;
 
-import com.foilen.infra.api.model.ResourceBucket;
+import com.foilen.infra.api.model.resource.ResourceBucket;
 import com.foilen.smalltools.restapi.model.AbstractSingleResult;
 
 public class ResponseResourceBucket extends AbstractSingleResult<ResourceBucket> {

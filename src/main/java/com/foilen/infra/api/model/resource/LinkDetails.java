@@ -7,7 +7,7 @@
     http://opensource.org/licenses/MIT
 
  */
-package com.foilen.infra.api.model;
+package com.foilen.infra.api.model.resource;
 
 import com.foilen.smalltools.restapi.model.AbstractApiBase;
 

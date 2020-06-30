@@ -7,12 +7,14 @@
     http://opensource.org/licenses/MIT
 
  */
-package com.foilen.infra.api.model;
+package com.foilen.infra.api.model.audit;
 
 public enum AuditType {
 
     LINK, //
     RESOURCE, //
     TAG, //
+
+    DOCUMENT, //
 
 }

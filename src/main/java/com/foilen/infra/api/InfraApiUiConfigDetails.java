@@ -10,8 +10,13 @@
 package com.foilen.infra.api;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
+@JsonInclude(value = Include.NON_EMPTY, content = Include.NON_NULL)
+@JsonPropertyOrder(alphabetic = true)
 public class InfraApiUiConfigDetails {
 
     private String baseUrl;

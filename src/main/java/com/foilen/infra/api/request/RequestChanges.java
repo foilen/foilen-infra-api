@@ -12,12 +12,14 @@ package com.foilen.infra.api.request;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.foilen.infra.api.model.LinkDetails;
-import com.foilen.infra.api.model.ResourceDetails;
-import com.foilen.infra.api.model.TagDetails;
+import com.foilen.infra.api.model.resource.LinkDetails;
+import com.foilen.infra.api.model.resource.ResourceDetails;
+import com.foilen.infra.api.model.resource.TagDetails;
 import com.foilen.smalltools.restapi.model.AbstractApiBase;
 
 public class RequestChanges extends AbstractApiBase {
+
+    private String defaultOwner;
 
     private List<ResourceDetails> resourcesToAdd = new ArrayList<>();
     private List<RequestResourceToUpdate> resourcesToUpdate = new ArrayList<>();
@@ -29,6 +31,10 @@ public class RequestChanges extends AbstractApiBase {
 
     private List<LinkDetails> linksToAdd = new ArrayList<>();
     private List<LinkDetails> linksToDelete = new ArrayList<>();
+
+    public String getDefaultOwner() {
+        return defaultOwner;
+    }
 
     public List<LinkDetails> getLinksToAdd() {
         return linksToAdd;
@@ -60,6 +66,11 @@ public class RequestChanges extends AbstractApiBase {
 
     public List<TagDetails> getTagsToDelete() {
         return tagsToDelete;
+    }
+
+    public RequestChanges setDefaultOwner(String defaultOwner) {
+        this.defaultOwner = defaultOwner;
+        return this;
     }
 
     public RequestChanges setLinksToAdd(List<LinkDetails> linksToAdd) {

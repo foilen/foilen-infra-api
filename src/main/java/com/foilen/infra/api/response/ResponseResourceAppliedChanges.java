@@ -12,7 +12,7 @@ package com.foilen.infra.api.response;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.foilen.infra.api.model.AuditItemSmallWithPagination;
+import com.foilen.infra.api.model.audit.AuditItemSmallWithPagination;
 import com.foilen.smalltools.restapi.model.FormResult;
 
 public class ResponseResourceAppliedChanges extends FormResult {

@@ -7,9 +7,14 @@
     http://opensource.org/licenses/MIT
 
  */
-package com.foilen.infra.api.model;
+package com.foilen.infra.api.model.permission;
 
-public enum AuditAction {
+public enum ResourceAction {
+
+    ALL, //
+
+    LIST, //
+    VIEW, //
 
     ADD, //
     UPDATE, //

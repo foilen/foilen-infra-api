@@ -17,9 +17,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.foilen.infra.api.model.DiskStat;
-import com.foilen.infra.api.model.ResourceDetails;
-import com.foilen.infra.api.model.SystemStats;
+import com.foilen.infra.api.model.machine.DiskStat;
+import com.foilen.infra.api.model.machine.SystemStats;
+import com.foilen.infra.api.model.resource.ResourceDetails;
 import com.foilen.infra.api.request.RequestChanges;
 import com.foilen.infra.api.request.RequestResourceSearch;
 import com.foilen.infra.api.response.ResponseResourceBucket;

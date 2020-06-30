@@ -9,7 +9,7 @@
  */
 package com.foilen.infra.api.request;
 
-import com.foilen.infra.api.model.ResourceDetails;
+import com.foilen.infra.api.model.resource.ResourceDetails;
 import com.foilen.smalltools.restapi.model.AbstractApiBase;
 
 public class RequestResourceToUpdate extends AbstractApiBase {

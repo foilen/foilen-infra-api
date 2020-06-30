@@ -9,7 +9,7 @@
  */
 package com.foilen.infra.api.response;
 
-import com.foilen.infra.api.model.ResourceTypeDetails;
+import com.foilen.infra.api.model.resource.ResourceTypeDetails;
 import com.foilen.smalltools.restapi.model.AbstractListResult;
 
 public class ResponseResourceTypesDetails extends AbstractListResult<ResourceTypeDetails> {

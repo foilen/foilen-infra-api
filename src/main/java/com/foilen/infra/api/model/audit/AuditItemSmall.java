@@ -7,8 +7,9 @@
     http://opensource.org/licenses/MIT
 
  */
-package com.foilen.infra.api.model;
+package com.foilen.infra.api.model.audit;
 
+import com.foilen.infra.api.model.resource.ResourceDetailsSmall;
 import com.foilen.smalltools.restapi.model.AbstractApiBase;
 
 public class AuditItemSmall extends AbstractApiBase {
@@ -20,7 +21,6 @@ public class AuditItemSmall extends AbstractApiBase {
     private ResourceDetailsSmall resourceSecond;
 
     private String linkType;
-
     private String tagName;
 
     public AuditAction getAction() {

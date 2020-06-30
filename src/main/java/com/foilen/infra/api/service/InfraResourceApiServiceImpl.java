@@ -17,8 +17,8 @@ import org.springframework.beans.BeanWrapper;
 import org.springframework.beans.BeanWrapperImpl;
 
 import com.foilen.infra.api.InfraApiUiException;
-import com.foilen.infra.api.model.ResourceDetails;
-import com.foilen.infra.api.model.ResourceTypeDetails;
+import com.foilen.infra.api.model.resource.ResourceDetails;
+import com.foilen.infra.api.model.resource.ResourceTypeDetails;
 import com.foilen.infra.api.request.RequestChanges;
 import com.foilen.infra.api.request.RequestResourceSearch;
 import com.foilen.infra.api.response.ResponseResourceAppliedChanges;
@@ -78,6 +78,13 @@ public class InfraResourceApiServiceImpl implements InfraResourceApiService {
     }
 
     @Override
+    public ResponseResourceBucket resourceFindById(String resourceId) {
+        Map<String, String> uriVariables = new HashMap<>();
+        uriVariables.put("resourceId", resourceId);
+        return infraApiService.get("/api/resource/resourceFindById/{resourceId}", ResponseResourceBucket.class, uriVariables, null);
+    }
+
+    @Override
     public ResponseResourceBucket resourceFindOne(RequestResourceSearch resourceSearch) {
         return infraApiService.post("/api/resource/resourceFindOne", resourceSearch, null, ResponseResourceBucket.class);
     }
@@ -101,6 +108,11 @@ public class InfraResourceApiServiceImpl implements InfraResourceApiService {
             });
         }
         return responseResourceTypesDetails;
+    }
+
+    @Override
+    public ResponseResourceBuckets resourceFindAllWithoutOwner() {
+        return infraApiService.get("/api/resource/resourceFindAllWithoutOwner", ResponseResourceBuckets.class);
     }
 
 }
