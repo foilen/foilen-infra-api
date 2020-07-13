@@ -20,6 +20,8 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.ssl.SSLContextBuilder;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.RequestEntity;
 import org.springframework.http.client.ClientHttpRequestFactory;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.http.client.support.BasicAuthorizationInterceptor;
@@ -75,6 +77,25 @@ public class InfraApiServiceImpl extends AbstractBasics implements InfraApiServi
         restTemplate.getInterceptors().add(new BasicAuthorizationInterceptor(apiUser, apiKey));
     }
 
+    protected <T> T delete(String relativeUrl, Map<String, ?> uriVariables, Class<T> responseClass) {
+        String url = infraBaseUrl + relativeUrl;
+        if (logger.isDebugEnabled()) {
+            logger.debug("[DELETE] {} with variables {} for {}", url, uriVariables, responseClass);
+        }
+        URI uri = null;
+        if (uriVariables == null) {
+            try {
+                uri = new URI(url);
+            } catch (URISyntaxException e) {
+                throw new InfraApiUiException("Invalid uri", e);
+            }
+        } else {
+            uri = new UriTemplate(url).expand(uriVariables);
+        }
+        RequestEntity<?> requestEntity = new RequestEntity<>(HttpMethod.DELETE, uri);
+        return restTemplate.exchange(requestEntity, responseClass).getBody();
+    }
+
     protected <T> T get(String relativeUrl, Class<T> responseClass) {
         String url = infraBaseUrl + relativeUrl;
         logger.debug("[GET] {} for {}", url, responseClass);
@@ -113,6 +134,11 @@ public class InfraApiServiceImpl extends AbstractBasics implements InfraApiServi
     @Override
     public InfraResourceApiService getInfraResourceApiService() {
         return new InfraResourceApiServiceImpl(this);
+    }
+
+    @Override
+    public InfraRoleApiService getInfraRoleApiService() {
+        return new InfraRoleApiServiceImpl(this);
     }
 
     public RestTemplate getRestTemplate() {

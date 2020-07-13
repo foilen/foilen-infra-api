@@ -19,8 +19,9 @@ public class RoleCreateForm extends AbstractApiBase {
         return name;
     }
 
-    public void setName(String name) {
+    public RoleCreateForm setName(String name) {
         this.name = name;
+        return this;
     }
 
 }
