@@ -78,6 +78,16 @@ public class InfraResourceApiServiceImpl implements InfraResourceApiService {
     }
 
     @Override
+    public ResponseResourceBuckets resourceFindAllWithDetails(RequestResourceSearch resourceSearch) {
+        return infraApiService.post("/api/resource/resourceFindAllWithDetails", resourceSearch, null, ResponseResourceBuckets.class);
+    }
+
+    @Override
+    public ResponseResourceBuckets resourceFindAllWithoutOwner() {
+        return infraApiService.get("/api/resource/resourceFindAllWithoutOwner", ResponseResourceBuckets.class);
+    }
+
+    @Override
     public ResponseResourceBucket resourceFindById(String resourceId) {
         Map<String, String> uriVariables = new HashMap<>();
         uriVariables.put("resourceId", resourceId);
@@ -108,11 +118,6 @@ public class InfraResourceApiServiceImpl implements InfraResourceApiService {
             });
         }
         return responseResourceTypesDetails;
-    }
-
-    @Override
-    public ResponseResourceBuckets resourceFindAllWithoutOwner() {
-        return infraApiService.get("/api/resource/resourceFindAllWithoutOwner", ResponseResourceBuckets.class);
     }
 
 }

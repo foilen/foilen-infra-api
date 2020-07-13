@@ -40,13 +40,22 @@ public interface InfraResourceApiService {
     Map<String, Object> onlyPkValues(ResourceDetails resourceDetails);
 
     /**
-     * Get all the resources.
+     * Get all the resources with List permission (not all the details).
      *
      * @param resourceSearch
      *            the search
      * @return the resources
      */
     ResponseResourceBuckets resourceFindAll(RequestResourceSearch resourceSearch);
+
+    /**
+     * Get all the resources with List permission and the details when you have View permission.
+     *
+     * @param resourceSearch
+     *            the search
+     * @return the resources
+     */
+    ResponseResourceBuckets resourceFindAllWithDetails(RequestResourceSearch resourceSearch);
 
     /**
      * Get all the resources without owners.
