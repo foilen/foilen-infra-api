@@ -9,8 +9,8 @@
  */
 package com.foilen.infra.api.model.machine;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 import com.foilen.infra.plugin.v1.model.base.IPApplicationDefinition;
 import com.foilen.infra.plugin.v1.model.resource.AbstractIPResource;
@@ -21,13 +21,14 @@ import com.google.common.collect.ComparisonChain;
  * This is for any application/service that is installed on a machine. <br>
  * Links to:
  * <ul>
- * <li>UnixUser: (optional / 1) RUN_AS - The user that executes that application. Will update the "runAs" of the Application itself and the "runAs" of all the services that are "null"</li>
- * <li>Machine: (optional / many) INSTALLED_ON - The machines where to install that application</li>
+ * <li>{@link UnixUser}: (optional / 1) RUN_AS - The user that executes that application. Will update the "runAs" of the Application itself and the "runAs" of all the services that are "null"</li>
+ * <li>{@link Machine}: (optional / many) INSTALLED_ON - The machines where to install that application</li>
  * </ul>
  *
  * Manages:
  * <ul>
- * <li>DnsPointer: (optional / many) POINTS_TO - Some domain names that will automatically point to the Machines on which it is INSTALLED_ON</li>
+ * <li>{@link Domain}: (optional / many) MANAGES - The domains</li>
+ * <li>{@link DnsPointer}: (optional / many) POINTS_TO - Some domain names that will automatically point to the Machines on which it is INSTALLED_ON</li>
  * </ul>
  */
 public class Application extends AbstractIPResource implements Comparable<Application> {
@@ -51,9 +52,19 @@ public class Application extends AbstractIPResource implements Comparable<Applic
     private IPApplicationDefinition applicationDefinition = new IPApplicationDefinition();
 
     // Network
-    private Set<String> domainNames = new HashSet<>();
+    private SortedSet<String> domainNames = new TreeSet<>();
 
     public Application() {
+    }
+
+    /**
+     * Primary key.
+     *
+     * @param name
+     *            the name
+     */
+    public Application(String name) {
+        this.name = name;
     }
 
     @Override
@@ -71,7 +82,7 @@ public class Application extends AbstractIPResource implements Comparable<Applic
         return description;
     }
 
-    public Set<String> getDomainNames() {
+    public SortedSet<String> getDomainNames() {
         return domainNames;
     }
 
@@ -110,7 +121,7 @@ public class Application extends AbstractIPResource implements Comparable<Applic
         this.description = description;
     }
 
-    public void setDomainNames(Set<String> domainNames) {
+    public void setDomainNames(SortedSet<String> domainNames) {
         this.domainNames = domainNames;
     }
 
