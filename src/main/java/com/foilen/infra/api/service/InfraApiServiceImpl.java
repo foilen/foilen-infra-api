@@ -24,7 +24,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.client.ClientHttpRequestFactory;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
-import org.springframework.http.client.support.BasicAuthorizationInterceptor;
+import org.springframework.http.client.support.BasicAuthenticationInterceptor;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -44,7 +44,7 @@ public class InfraApiServiceImpl extends AbstractBasics implements InfraApiServi
     public InfraApiServiceImpl(String infraBaseUrl, String apiUser, String apiKey) {
         this.infraBaseUrl = infraBaseUrl;
         this.restTemplate = new RestTemplate();
-        restTemplate.getInterceptors().add(new BasicAuthorizationInterceptor(apiUser, apiKey));
+        restTemplate.getInterceptors().add(new BasicAuthenticationInterceptor(apiUser, apiKey));
     }
 
     public InfraApiServiceImpl(String infraBaseUrl, String apiUser, String apiKey, String certText) {
@@ -74,7 +74,7 @@ public class InfraApiServiceImpl extends AbstractBasics implements InfraApiServi
             }
         }
 
-        restTemplate.getInterceptors().add(new BasicAuthorizationInterceptor(apiUser, apiKey));
+        restTemplate.getInterceptors().add(new BasicAuthenticationInterceptor(apiUser, apiKey));
     }
 
     protected <T> T delete(String relativeUrl, Map<String, ?> uriVariables, Class<T> responseClass) {
