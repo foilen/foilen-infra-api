@@ -7,13 +7,11 @@
     http://opensource.org/licenses/MIT
 
  */
-package com.foilen.infra.api.model.machine;
+package com.foilen.infra.api.model.machine.model;
 
-public enum ExecutionPolicy {
+public enum IPApplicationDefinitionBuildStepType {
 
-    ALWAYS_ON, //
-
-    @Deprecated
-    CRON, //
+    COMMAND, //
+    COPY, //
 
 }

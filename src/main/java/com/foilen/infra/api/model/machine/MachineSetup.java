@@ -32,11 +32,16 @@ public class MachineSetup extends AbstractApiBase {
     // Unix Users
     private List<UnixUser> unixUsers = new ArrayList<>();
 
-    // Application
+    // Applications and cron jobs
     private List<Application> applications = new ArrayList<>();
+    private List<CronJob> cronJobs = new ArrayList<>();
 
     public List<Application> getApplications() {
         return applications;
+    }
+
+    public List<CronJob> getCronJobs() {
+        return cronJobs;
     }
 
     public String getMachineName() {
@@ -81,6 +86,10 @@ public class MachineSetup extends AbstractApiBase {
 
     public void setApplications(List<Application> applications) {
         this.applications = applications;
+    }
+
+    public void setCronJobs(List<CronJob> cronJobs) {
+        this.cronJobs = cronJobs;
     }
 
     public void setMachineName(String machineName) {

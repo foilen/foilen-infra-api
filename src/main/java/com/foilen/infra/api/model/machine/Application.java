@@ -12,40 +12,23 @@ package com.foilen.infra.api.model.machine;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
-import com.foilen.infra.plugin.v1.model.base.IPApplicationDefinition;
-import com.foilen.infra.plugin.v1.model.resource.AbstractIPResource;
-import com.foilen.infra.plugin.v1.model.resource.InfraPluginResourceCategory;
+import com.foilen.infra.api.model.machine.model.IPApplicationDefinition;
+import com.foilen.smalltools.restapi.model.AbstractApiBase;
 import com.google.common.collect.ComparisonChain;
 
 /**
- * This is for any application/service that is installed on a machine. <br>
- * Links to:
- * <ul>
- * <li>{@link UnixUser}: (optional / 1) RUN_AS - The user that executes that application. Will update the "runAs" of the Application itself and the "runAs" of all the services that are "null"</li>
- * <li>{@link Machine}: (optional / many) INSTALLED_ON - The machines where to install that application</li>
- * </ul>
- *
- * Manages:
- * <ul>
- * <li>{@link Domain}: (optional / many) MANAGES - The domains</li>
- * <li>{@link DnsPointer}: (optional / many) POINTS_TO - Some domain names that will automatically point to the Machines on which it is INSTALLED_ON</li>
- * </ul>
+ * This is for any application/service that is installed on a machine.
  */
-public class Application extends AbstractIPResource implements Comparable<Application> {
-
-    public static final String RESOURCE_TYPE = "Application";
-
-    public static final String PROPERTY_NAME = "name";
-    public static final String PROPERTY_DESCRIPTION = "description";
-    public static final String PROPERTY_APPLICATION_DEFINITION = "applicationDefinition";
-    public static final String PROPERTY_DOMAIN_NAMES = "domainNames";
+public class Application extends AbstractApiBase implements Comparable<Application> {
 
     // Application
     private String name;
     private String description;
 
     // Execution
+    @Deprecated
     private ExecutionPolicy executionPolicy = ExecutionPolicy.ALWAYS_ON;
+    @Deprecated
     private String executionCronDetails;
 
     // Details
@@ -86,30 +69,17 @@ public class Application extends AbstractIPResource implements Comparable<Applic
         return domainNames;
     }
 
+    @Deprecated
     public String getExecutionCronDetails() {
         return executionCronDetails;
     }
 
+    @Deprecated
     public ExecutionPolicy getExecutionPolicy() {
         return executionPolicy;
     }
 
     public String getName() {
-        return name;
-    }
-
-    @Override
-    public InfraPluginResourceCategory getResourceCategory() {
-        return InfraPluginResourceCategory.INFRASTRUCTURE;
-    }
-
-    @Override
-    public String getResourceDescription() {
-        return description;
-    }
-
-    @Override
-    public String getResourceName() {
         return name;
     }
 
@@ -125,10 +95,12 @@ public class Application extends AbstractIPResource implements Comparable<Applic
         this.domainNames = domainNames;
     }
 
+    @Deprecated
     public void setExecutionCronDetails(String executionCronDetails) {
         this.executionCronDetails = executionCronDetails;
     }
 
+    @Deprecated
     public void setExecutionPolicy(ExecutionPolicy executionPolicy) {
         this.executionPolicy = executionPolicy;
     }

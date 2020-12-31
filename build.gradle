@@ -42,16 +42,12 @@ dependencies {
 
   compile "com.fasterxml.jackson.core:jackson-databind"
   compile "com.foilen:jl-smalltools:$smalltoolsVersion"
-  compile "com.google.guava:guava"
+  compile "com.google.guava:guava:$guavaVersion"
   compile "javax.xml.bind:jaxb-api"
   compile "org.apache.commons:commons-lang3"
   compile "org.slf4j:slf4j-api"
   
-  // Plugin
-  compile "com.foilen:foilen-infra-plugin-model:$foilenInfraPluginVersion"
-
   // Spring
-  compile "commons-logging:commons-logging"
   compile "org.apache.httpcomponents:httpclient"
   compile "org.springframework:spring-context"
   compile "org.springframework:spring-web"

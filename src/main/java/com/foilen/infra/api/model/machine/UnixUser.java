@@ -9,34 +9,15 @@
  */
 package com.foilen.infra.api.model.machine;
 
-import com.foilen.infra.plugin.v1.model.resource.AbstractIPResource;
-import com.foilen.infra.plugin.v1.model.resource.InfraPluginResourceCategory;
-import com.google.common.collect.ComparisonChain;
+import com.foilen.smalltools.restapi.model.AbstractApiBase;
+import com.foilen.smalltools.tools.StringTools;
 
 /**
- * This is a unix user that is installed on some Machine.<br>
- * Links to:
- * <ul>
- * <li>Machine: (optional / many) INSTALLED_ON - The machines where to install that unix user</li>
- * </ul>
- *
- * Manages:
- * <ul>
- * <li>None</li>
- * </ul>
+ * This is a unix user that is installed on some Machine.
  */
-public class UnixUser extends AbstractIPResource implements Comparable<UnixUser> {
+public class UnixUser extends AbstractApiBase implements Comparable<UnixUser> {
 
-    public static final String RESOURCE_TYPE = "Unix User";
-
-    public static final String PROPERTY_ID = "id";
-    public static final String PROPERTY_NAME = "name";
-    public static final String PROPERTY_HOME_FOLDER = "homeFolder";
-    public static final String PROPERTY_SHELL = "shell";
-    public static final String PROPERTY_HASHED_PASSWORD = "hashedPassword";
-    public static final String PROPERTY_PASSWORD = "password";
-    public static final String PROPERTY_KEEP_CLEAR_PASSWORD = "keepClearPassword";
-
+    // Specific
     private Long id;
     private String name;
     private String homeFolder;
@@ -75,9 +56,7 @@ public class UnixUser extends AbstractIPResource implements Comparable<UnixUser>
 
     @Override
     public int compareTo(UnixUser o) {
-        return ComparisonChain.start() //
-                .compare(this.name, o.name) //
-                .result();
+        return StringTools.safeComparisonNullFirst(this.name, o.name);
     }
 
     public String getHashedPassword() {
@@ -98,21 +77,6 @@ public class UnixUser extends AbstractIPResource implements Comparable<UnixUser>
 
     public String getPassword() {
         return password;
-    }
-
-    @Override
-    public InfraPluginResourceCategory getResourceCategory() {
-        return InfraPluginResourceCategory.INFRASTRUCTURE;
-    }
-
-    @Override
-    public String getResourceDescription() {
-        return homeFolder;
-    }
-
-    @Override
-    public String getResourceName() {
-        return name;
     }
 
     public String getShell() {
