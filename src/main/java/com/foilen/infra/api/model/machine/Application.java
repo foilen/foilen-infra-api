@@ -25,12 +25,6 @@ public class Application extends AbstractApiBase implements Comparable<Applicati
     private String name;
     private String description;
 
-    // Execution
-    @Deprecated
-    private ExecutionPolicy executionPolicy = ExecutionPolicy.ALWAYS_ON;
-    @Deprecated
-    private String executionCronDetails;
-
     // Details
     private IPApplicationDefinition applicationDefinition = new IPApplicationDefinition();
 
@@ -69,16 +63,6 @@ public class Application extends AbstractApiBase implements Comparable<Applicati
         return domainNames;
     }
 
-    @Deprecated
-    public String getExecutionCronDetails() {
-        return executionCronDetails;
-    }
-
-    @Deprecated
-    public ExecutionPolicy getExecutionPolicy() {
-        return executionPolicy;
-    }
-
     public String getName() {
         return name;
     }
@@ -93,16 +77,6 @@ public class Application extends AbstractApiBase implements Comparable<Applicati
 
     public void setDomainNames(SortedSet<String> domainNames) {
         this.domainNames = domainNames;
-    }
-
-    @Deprecated
-    public void setExecutionCronDetails(String executionCronDetails) {
-        this.executionCronDetails = executionCronDetails;
-    }
-
-    @Deprecated
-    public void setExecutionPolicy(ExecutionPolicy executionPolicy) {
-        this.executionPolicy = executionPolicy;
     }
 
     public void setName(String name) {
