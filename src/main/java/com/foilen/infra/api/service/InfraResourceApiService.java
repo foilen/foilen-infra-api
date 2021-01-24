@@ -11,6 +11,7 @@ package com.foilen.infra.api.service;
 
 import java.util.Map;
 
+import com.foilen.infra.api.model.resource.ResourceBucketsWithPagination;
 import com.foilen.infra.api.model.resource.ResourceDetails;
 import com.foilen.infra.api.request.RequestChanges;
 import com.foilen.infra.api.request.RequestResourceSearch;
@@ -38,6 +39,19 @@ public interface InfraResourceApiService {
      * @return the map with the primary keys values
      */
     Map<String, Object> onlyPkValues(ResourceDetails resourceDetails);
+
+    /**
+     * Get all the resources with List permission (not all the details).
+     *
+     * @param pageId
+     *            the page id starting at 1
+     * @param search
+     *            (optional) search
+     * @param onlyWithEditor
+     *            true to only show resources that were created with an editor
+     * @return the resources
+     */
+    ResourceBucketsWithPagination resourceFindAll(int pageId, String search, boolean onlyWithEditor);
 
     /**
      * Get all the resources with List permission (not all the details).

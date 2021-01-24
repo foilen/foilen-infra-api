@@ -14,27 +14,27 @@ import com.foilen.smalltools.restapi.model.AbstractApiBase;
 
 public class RequestResourceToUpdate extends AbstractApiBase {
 
-    private ResourceDetails resourcePk;
+    private ResourceDetails resource;
     private ResourceDetails updatedResource;
 
     public RequestResourceToUpdate() {
     }
 
-    public RequestResourceToUpdate(ResourceDetails resourcePk, ResourceDetails updatedResource) {
-        this.resourcePk = resourcePk;
+    public RequestResourceToUpdate(ResourceDetails resource, ResourceDetails updatedResource) {
+        this.resource = resource;
         this.updatedResource = updatedResource;
     }
 
-    public ResourceDetails getResourcePk() {
-        return resourcePk;
+    public ResourceDetails getResource() {
+        return resource;
     }
 
     public ResourceDetails getUpdatedResource() {
         return updatedResource;
     }
 
-    public RequestResourceToUpdate setResourcePk(ResourceDetails resourcePk) {
-        this.resourcePk = resourcePk;
+    public RequestResourceToUpdate setResource(ResourceDetails resource) {
+        this.resource = resource;
         return this;
     }
 

@@ -13,15 +13,21 @@ import com.foilen.smalltools.restapi.model.AbstractApiBase;
 
 public class ResourceDetailsSmall extends AbstractApiBase {
 
+    private String resourceId;
     private String resourceType;
     private String resourceName;
 
     public ResourceDetailsSmall() {
     }
 
-    public ResourceDetailsSmall(String resourceType, String resourceName) {
+    public ResourceDetailsSmall(String resourceId, String resourceType, String resourceName) {
+        this.resourceId = resourceId;
         this.resourceType = resourceType;
         this.resourceName = resourceName;
+    }
+
+    public String getResourceId() {
+        return resourceId;
     }
 
     public String getResourceName() {
@@ -30,6 +36,10 @@ public class ResourceDetailsSmall extends AbstractApiBase {
 
     public String getResourceType() {
         return resourceType;
+    }
+
+    public void setResourceId(String resourceId) {
+        this.resourceId = resourceId;
     }
 
     public void setResourceName(String resourceName) {

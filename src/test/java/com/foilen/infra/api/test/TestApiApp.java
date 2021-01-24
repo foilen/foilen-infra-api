@@ -46,7 +46,7 @@ public class TestApiApp {
         resource.put("name", apiTestDnsEntryName);
         resource.put("type", "CNAME");
         resource.put("details", "google.com");
-        changes.getResourcesToAdd().add(new ResourceDetails(DNS_ENTRY_RESOURCE_TYPE, resource));
+        changes.getResourcesToAdd().add(new ResourceDetails(null, DNS_ENTRY_RESOURCE_TYPE, resource));
         return changes;
     }
 

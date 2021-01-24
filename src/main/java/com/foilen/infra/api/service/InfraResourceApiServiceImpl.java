@@ -15,8 +15,11 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import org.springframework.beans.BeanWrapper;
 import org.springframework.beans.BeanWrapperImpl;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 
 import com.foilen.infra.api.InfraApiUiException;
+import com.foilen.infra.api.model.resource.ResourceBucketsWithPagination;
 import com.foilen.infra.api.model.resource.ResourceDetails;
 import com.foilen.infra.api.model.resource.ResourceTypeDetails;
 import com.foilen.infra.api.request.RequestChanges;
@@ -70,6 +73,15 @@ public class InfraResourceApiServiceImpl implements InfraResourceApiService {
         }
 
         return properties;
+    }
+
+    @Override
+    public ResourceBucketsWithPagination resourceFindAll(int pageId, String search, boolean onlyWithEditor) {
+        MultiValueMap<String, String> queryParams = new LinkedMultiValueMap<>();
+        queryParams.add("pageId", String.valueOf(pageId));
+        queryParams.add("search", search);
+        queryParams.add("onlyWithEditor", String.valueOf(onlyWithEditor));
+        return infraApiService.get("/api/resource", ResourceBucketsWithPagination.class, null, queryParams);
     }
 
     @Override

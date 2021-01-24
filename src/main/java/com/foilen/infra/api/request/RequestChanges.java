@@ -17,14 +17,21 @@ import com.foilen.infra.api.model.resource.ResourceDetails;
 import com.foilen.infra.api.model.resource.TagDetails;
 import com.foilen.smalltools.restapi.model.AbstractApiBase;
 
+/**
+ * The changes to make. For any {@link ResourceDetails}, you can put
+ * <ul>
+ * <li>the resource Id</li>
+ * <li>or the resource properties that defines the Primary Key</li>
+ * </ul>
+ */
 public class RequestChanges extends AbstractApiBase {
 
     private String defaultOwner;
 
     private List<ResourceDetails> resourcesToAdd = new ArrayList<>();
     private List<RequestResourceToUpdate> resourcesToUpdate = new ArrayList<>();
-    private List<ResourceDetails> resourcesToDeletePk = new ArrayList<>();
-    private List<ResourceDetails> resourcesToRefreshPk = new ArrayList<>();
+    private List<ResourceDetails> resourcesToDelete = new ArrayList<>();
+    private List<ResourceDetails> resourcesToRefresh = new ArrayList<>();
 
     private List<TagDetails> tagsToAdd = new ArrayList<>();
     private List<TagDetails> tagsToDelete = new ArrayList<>();
@@ -48,12 +55,12 @@ public class RequestChanges extends AbstractApiBase {
         return resourcesToAdd;
     }
 
-    public List<ResourceDetails> getResourcesToDeletePk() {
-        return resourcesToDeletePk;
+    public List<ResourceDetails> getResourcesToDelete() {
+        return resourcesToDelete;
     }
 
-    public List<ResourceDetails> getResourcesToRefreshPk() {
-        return resourcesToRefreshPk;
+    public List<ResourceDetails> getResourcesToRefresh() {
+        return resourcesToRefresh;
     }
 
     public List<RequestResourceToUpdate> getResourcesToUpdate() {
@@ -88,13 +95,13 @@ public class RequestChanges extends AbstractApiBase {
         return this;
     }
 
-    public RequestChanges setResourcesToDeletePk(List<ResourceDetails> resourcesToDeletePk) {
-        this.resourcesToDeletePk = resourcesToDeletePk;
+    public RequestChanges setResourcesToDelete(List<ResourceDetails> resourcesToDelete) {
+        this.resourcesToDelete = resourcesToDelete;
         return this;
     }
 
-    public RequestChanges setResourcesToRefreshPk(List<ResourceDetails> resourcesToRefreshPk) {
-        this.resourcesToRefreshPk = resourcesToRefreshPk;
+    public RequestChanges setResourcesToRefresh(List<ResourceDetails> resourcesToRefresh) {
+        this.resourcesToRefresh = resourcesToRefresh;
         return this;
     }
 

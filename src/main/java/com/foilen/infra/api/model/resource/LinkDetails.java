@@ -13,41 +13,41 @@ import com.foilen.smalltools.restapi.model.AbstractApiBase;
 
 public class LinkDetails extends AbstractApiBase {
 
-    private ResourceDetails fromResourcePk;
+    private ResourceDetails fromResource;
     private String linkType;
-    private ResourceDetails toResourcePk;
+    private ResourceDetails toResource;
 
     public LinkDetails() {
     }
 
-    public LinkDetails(ResourceDetails fromResourcePk, String linkType, ResourceDetails toResourcePk) {
-        this.fromResourcePk = fromResourcePk;
+    public LinkDetails(ResourceDetails fromResource, String linkType, ResourceDetails toResource) {
+        this.fromResource = fromResource;
         this.linkType = linkType;
-        this.toResourcePk = toResourcePk;
+        this.toResource = toResource;
     }
 
-    public ResourceDetails getFromResourcePk() {
-        return fromResourcePk;
+    public ResourceDetails getFromResource() {
+        return fromResource;
     }
 
     public String getLinkType() {
         return linkType;
     }
 
-    public ResourceDetails getToResourcePk() {
-        return toResourcePk;
+    public ResourceDetails getToResource() {
+        return toResource;
     }
 
-    public void setFromResourcePk(ResourceDetails fromResourcePk) {
-        this.fromResourcePk = fromResourcePk;
+    public void setFromResource(ResourceDetails fromResource) {
+        this.fromResource = fromResource;
     }
 
     public void setLinkType(String linkType) {
         this.linkType = linkType;
     }
 
-    public void setToResourcePk(ResourceDetails toResourcePk) {
-        this.toResourcePk = toResourcePk;
+    public void setToResource(ResourceDetails toResource) {
+        this.toResource = toResource;
     }
 
 }

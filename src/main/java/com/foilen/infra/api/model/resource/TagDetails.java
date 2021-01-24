@@ -14,26 +14,26 @@ import com.foilen.smalltools.restapi.model.AbstractApiBase;
 public class TagDetails extends AbstractApiBase {
 
     private String tagName;
-    private ResourceDetails resourcePk;
+    private ResourceDetails resource;
 
     public TagDetails() {
     }
 
-    public TagDetails(String tagName, ResourceDetails resourcePk) {
+    public TagDetails(String tagName, ResourceDetails resource) {
         this.tagName = tagName;
-        this.resourcePk = resourcePk;
+        this.resource = resource;
     }
 
-    public ResourceDetails getResourcePk() {
-        return resourcePk;
+    public ResourceDetails getResource() {
+        return resource;
     }
 
     public String getTagName() {
         return tagName;
     }
 
-    public void setResourcePk(ResourceDetails resourcePk) {
-        this.resourcePk = resourcePk;
+    public void setResource(ResourceDetails resource) {
+        this.resource = resource;
     }
 
     public void setTagName(String tagName) {
