@@ -30,6 +30,12 @@ public class ApplicationDetails extends AbstractApiBase {
 
     private List<String> resourceTypes = new ArrayList<>();
 
+    private Map<String, List<String>> externalJsScripts = new HashMap<>();
+
+    public Map<String, List<String>> getExternalJsScripts() {
+        return externalJsScripts;
+    }
+
     public String getLang() {
         return lang;
     }
@@ -56,6 +62,11 @@ public class ApplicationDetails extends AbstractApiBase {
 
     public boolean isUserAdmin() {
         return userAdmin;
+    }
+
+    public ApplicationDetails setExternalJsScripts(Map<String, List<String>> externalJsScripts) {
+        this.externalJsScripts = externalJsScripts;
+        return this;
     }
 
     public ApplicationDetails setLang(String lang) {
