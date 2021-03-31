@@ -111,9 +111,15 @@ public class InfraApiServiceImpl extends AbstractBasics implements InfraApiServi
     protected <T> T get(String relativeUrl, Class<T> responseClass, Map<String, ?> uriVariables, MultiValueMap<String, String> queryParams) {
         String url = infraBaseUrl + relativeUrl;
         logger.debug("[GET] {} with variables {} and query params {} for {}", url, uriVariables, queryParams, responseClass);
-        url = UriComponentsBuilder.fromUriString(url) //
-                .queryParams(queryParams) //
-                .buildAndExpand(uriVariables).toUriString();
+        if (uriVariables == null) {
+            url = UriComponentsBuilder.fromUriString(url) //
+                    .queryParams(queryParams) //
+                    .build().toUriString();
+        } else {
+            url = UriComponentsBuilder.fromUriString(url) //
+                    .queryParams(queryParams) //
+                    .buildAndExpand(uriVariables).toUriString();
+        }
         return restTemplate.getForObject(url, responseClass);
     }
 
