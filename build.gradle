@@ -33,23 +33,23 @@ eclipse {
 
 dependencies {
 
-  compile "com.fasterxml.jackson.core:jackson-databind"
-  compile "com.foilen:jl-smalltools:$smalltoolsVersion"
-  compile "com.google.guava:guava:$guavaVersion"
-  compile "javax.xml.bind:jaxb-api"
-  compile "org.apache.commons:commons-lang3"
-  compile "org.slf4j:slf4j-api"
+  implementation "com.fasterxml.jackson.core:jackson-databind"
+  implementation "com.foilen:jl-smalltools:$smalltoolsVersion"
+  implementation "com.google.guava:guava:$guavaVersion"
+  implementation "javax.xml.bind:jaxb-api"
+  implementation "org.apache.commons:commons-lang3"
+  implementation "org.slf4j:slf4j-api"
   
   // Spring
-  compile "org.apache.httpcomponents:httpclient"
-  compile "org.springframework:spring-context"
-  compile "org.springframework:spring-web"
+  implementation "org.apache.httpcomponents:httpclient"
+  implementation "org.springframework:spring-context"
+  implementation "org.springframework:spring-web"
   
   // Test
   testCompileOnly "junit:junit"
   testImplementation "org.junit.jupiter:junit-jupiter-api"
   testRuntimeOnly "org.junit.vintage:junit-vintage-engine"
-  testCompile 'org.springframework.data:spring-data-jpa'
+  testImplementation 'org.springframework.data:spring-data-jpa'
 }
 
 task sourcesJar(type: Jar, dependsOn: classes) {
