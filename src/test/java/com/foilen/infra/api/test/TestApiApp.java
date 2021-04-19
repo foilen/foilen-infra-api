@@ -27,16 +27,18 @@ import com.foilen.infra.api.service.InfraAlertApiService;
 import com.foilen.infra.api.service.InfraApiServiceImpl;
 import com.foilen.infra.api.service.InfraMachineApiService;
 import com.foilen.infra.api.service.InfraResourceApiService;
+import com.foilen.infra.api.service.InfraUserHumanApiService;
 import com.foilen.smalltools.restapi.model.AbstractApiBaseWithError;
 import com.foilen.smalltools.systemusage.results.NetworkInfo;
-import com.foilen.smalltools.tools.AssertTools;
 import com.foilen.smalltools.tools.DateTools;
+import com.foilen.smalltools.tools.DirectoryTools;
 import com.foilen.smalltools.tools.JsonTools;
 import com.foilen.smalltools.tools.SecureRandomTools;
 import com.google.common.base.Supplier;
 
 public class TestApiApp {
 
+    private static final String OUTPUT_FOLDER = "_test_output";
     private static final String DNS_ENTRY_RESOURCE_TYPE = "Dns Entry";
     private static final String apiTestDnsEntryName = SecureRandomTools.randomHexString(3) + "apitest.example.com";
 
@@ -96,15 +98,19 @@ public class TestApiApp {
     private static <R extends AbstractApiBaseWithError> R execute(String name, Supplier<R> supplier) {
         System.out.println("---[" + name + "]---");
         R response = supplier.get();
-        AbstractApiBaseWithError apiBaseWithError = response;
         System.out.println(JsonTools.prettyPrint(response));
-        AssertTools.assertTrue(apiBaseWithError.isSuccess(), name + " was not successful");
+
+        JsonTools.writeToFile(OUTPUT_FOLDER + "/" + name, response);
+
         return response;
     }
 
     public static void main(String[] args) {
 
-        InfraApiServiceImpl infraApiService = new InfraApiServiceImpl("http://localhost:8080", "AADMIN", "01234567");
+        DirectoryTools.deleteFolder(OUTPUT_FOLDER);
+        DirectoryTools.createPath(OUTPUT_FOLDER);
+
+        InfraApiServiceImpl infraApiService = new InfraApiServiceImpl("http://localhost:8888", "AADMIN", "01234567");
 
         InfraMachineApiService machineApiService = infraApiService.getInfraMachineApiService();
         execute("machineApiService.getMachineSetup", () -> machineApiService.getMachineSetup("f001.node.example.com"));
@@ -130,6 +136,12 @@ public class TestApiApp {
         System.out.println("---[ Send alert ]---");
         InfraAlertApiService infraAlertApiService = infraApiService.getInfraAlertApiService();
         execute("alertApiService.sendAlert", () -> infraAlertApiService.sendAlert("The subject", "The content"));
+
+        // Human users api
+        System.out.println("---[ Human User ]---");
+        InfraUserHumanApiService infraUserHumanApiService = infraApiService.getInfraUserHumanApiService();
+        execute("userHumanApiService.userHumanCreateByEmail", () -> infraUserHumanApiService.userHumanCreateByEmail(SecureRandomTools.randomHexString(5) + "@foilen.com"));
+        execute("userHumanApiService.userHumanFindAll", () -> infraUserHumanApiService.userHumanFindAll(1, null));
 
     }
 

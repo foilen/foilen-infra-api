@@ -147,6 +147,11 @@ public class InfraApiServiceImpl extends AbstractBasics implements InfraApiServi
         return new InfraRoleApiServiceImpl(this);
     }
 
+    @Override
+    public InfraUserHumanApiService getInfraUserHumanApiService() {
+        return new InfraUserHumanApiServiceImpl(this);
+    }
+
     public RestTemplate getRestTemplate() {
         return restTemplate;
     }

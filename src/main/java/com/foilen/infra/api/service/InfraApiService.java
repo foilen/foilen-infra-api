@@ -19,4 +19,6 @@ public interface InfraApiService {
 
     InfraRoleApiService getInfraRoleApiService();
 
+    InfraUserHumanApiService getInfraUserHumanApiService();
+
 }
