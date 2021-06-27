@@ -46,6 +46,13 @@ public class InfraResourceApiServiceImpl implements InfraResourceApiService {
     }
 
     @Override
+    public ResponseResourceAppliedChanges applyChangesAs(String impersonateUserId, RequestChanges changesRequest) {
+        Map<String, String> uriVariables = new HashMap<>();
+        uriVariables.put("impersonateUserId", impersonateUserId);
+        return infraApiService.post("/api/resource/as/{impersonateUserId}/applyChanges", changesRequest, uriVariables, ResponseResourceAppliedChanges.class);
+    }
+
+    @Override
     public Map<String, Object> onlyPkValues(ResourceDetails resourceDetails) {
         if (resourceTypeDetailsByResourceTypeExpirationTime < System.currentTimeMillis()) {
             typeFindAll();
@@ -90,8 +97,35 @@ public class InfraResourceApiServiceImpl implements InfraResourceApiService {
     }
 
     @Override
+    public ResourceBucketsWithPagination resourceFindAllAs(String impersonateUserId, int pageId, String search, boolean onlyWithEditor) {
+        Map<String, String> uriVariables = new HashMap<>();
+        uriVariables.put("impersonateUserId", impersonateUserId);
+
+        MultiValueMap<String, String> queryParams = new LinkedMultiValueMap<>();
+        queryParams.add("pageId", String.valueOf(pageId));
+        queryParams.add("search", search);
+        queryParams.add("onlyWithEditor", String.valueOf(onlyWithEditor));
+
+        return infraApiService.get("/api/resource/as/{impersonateUserId}", ResourceBucketsWithPagination.class, uriVariables, queryParams);
+    }
+
+    @Override
+    public ResponseResourceBuckets resourceFindAllAs(String impersonateUserId, RequestResourceSearch resourceSearch) {
+        Map<String, String> uriVariables = new HashMap<>();
+        uriVariables.put("impersonateUserId", impersonateUserId);
+        return infraApiService.post("/api/resource/as/{impersonateUserId}/resourceFindAll", resourceSearch, uriVariables, ResponseResourceBuckets.class);
+    }
+
+    @Override
     public ResponseResourceBuckets resourceFindAllWithDetails(RequestResourceSearch resourceSearch) {
         return infraApiService.post("/api/resource/resourceFindAllWithDetails", resourceSearch, null, ResponseResourceBuckets.class);
+    }
+
+    @Override
+    public ResponseResourceBuckets resourceFindAllWithDetailsAs(String impersonateUserId, RequestResourceSearch resourceSearch) {
+        Map<String, String> uriVariables = new HashMap<>();
+        uriVariables.put("impersonateUserId", impersonateUserId);
+        return infraApiService.post("/api/resource/as/{impersonateUserId}/resourceFindAllWithDetails", resourceSearch, uriVariables, ResponseResourceBuckets.class);
     }
 
     @Override

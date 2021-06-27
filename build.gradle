@@ -50,6 +50,7 @@ dependencies {
   testImplementation "org.junit.jupiter:junit-jupiter-api"
   testRuntimeOnly "org.junit.vintage:junit-vintage-engine"
   testImplementation 'org.springframework.data:spring-data-jpa'
+  testImplementation 'ch.qos.logback:logback-classic'
 }
 
 task sourcesJar(type: Jar, dependsOn: classes) {

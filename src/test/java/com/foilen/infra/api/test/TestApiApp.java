@@ -33,17 +33,24 @@ import com.foilen.smalltools.systemusage.results.NetworkInfo;
 import com.foilen.smalltools.tools.DateTools;
 import com.foilen.smalltools.tools.DirectoryTools;
 import com.foilen.smalltools.tools.JsonTools;
+import com.foilen.smalltools.tools.LogbackTools;
 import com.foilen.smalltools.tools.SecureRandomTools;
 import com.google.common.base.Supplier;
 
 public class TestApiApp {
 
+    private static final String DEFAULT_OWNER = "alpha";
     private static final String OUTPUT_FOLDER = "_test_output";
     private static final String DNS_ENTRY_RESOURCE_TYPE = "Dns Entry";
-    private static final String apiTestDnsEntryName = SecureRandomTools.randomHexString(3) + "apitest.example.com";
+
+    private static String apiTestDnsEntryName;
 
     private static RequestChanges createChangeRequest() {
+
+        apiTestDnsEntryName = SecureRandomTools.randomHexString(3) + "apitest.example2.com";
+
         RequestChanges changes = new RequestChanges();
+        changes.setDefaultOwner(DEFAULT_OWNER);
         Map<String, String> resource = new HashMap<>();
         resource.put("name", apiTestDnsEntryName);
         resource.put("type", "CNAME");
@@ -100,12 +107,14 @@ public class TestApiApp {
         R response = supplier.get();
         System.out.println(JsonTools.prettyPrint(response));
 
-        JsonTools.writeToFile(OUTPUT_FOLDER + "/" + name, response);
+        JsonTools.writeToFile(OUTPUT_FOLDER + "/" + name + ".json", response);
 
         return response;
     }
 
     public static void main(String[] args) {
+
+        LogbackTools.changeConfig("/com/foilen/infra/api/test/logback-debug.xml");
 
         DirectoryTools.deleteFolder(OUTPUT_FOLDER);
         DirectoryTools.createPath(OUTPUT_FOLDER);
@@ -119,12 +128,23 @@ public class TestApiApp {
         InfraResourceApiService resourceApiService = infraApiService.getInfraResourceApiService();
 
         execute("resourceApiService.applyChanges", () -> resourceApiService.applyChanges(createChangeRequest()));
-        execute("resourceApiService.resourceFindAll", () -> resourceApiService.resourceFindAll(new RequestResourceSearch() //
+        execute("resourceApiService.resourceFindAll-search", () -> resourceApiService.resourceFindAll(new RequestResourceSearch() //
                 .setResourceType(DNS_ENTRY_RESOURCE_TYPE)));
+        execute("resourceApiService.resourceFindAll-page-0", () -> resourceApiService.resourceFindAll(0, null, false));
+        execute("resourceApiService.resourceFindAll-page-1", () -> resourceApiService.resourceFindAll(1, null, false));
         ResponseResourceBucket oneFound = execute("resourceApiService.resourceFindOne", () -> resourceApiService.resourceFindOne(new RequestResourceSearch() //
                 .setResourceType(DNS_ENTRY_RESOURCE_TYPE) //
                 .setProperties(Collections.singletonMap("name", apiTestDnsEntryName))));
         execute("resourceApiService.typeFindAll", () -> resourceApiService.typeFindAll());
+
+        execute("resourceApiService.resourceFindAllAs-search", () -> resourceApiService.resourceFindAllAs("333333", new RequestResourceSearch() //
+                .setResourceType(DNS_ENTRY_RESOURCE_TYPE)));
+        execute("resourceApiService.resourceFindAllAs-page", () -> resourceApiService.resourceFindAllAs("333333", 1, null, false));
+
+        execute("resourceApiService.resourceFindAllWithDetailsAse", () -> resourceApiService.resourceFindAllWithDetailsAs("333333", new RequestResourceSearch() //
+                .setResourceType(DNS_ENTRY_RESOURCE_TYPE)));
+
+        execute("resourceApiService.applyChangesAs", () -> resourceApiService.applyChangesAs("333333", createChangeRequest()));
 
         // Try to get all the links
         System.out.println("---[ Get the links ]---");

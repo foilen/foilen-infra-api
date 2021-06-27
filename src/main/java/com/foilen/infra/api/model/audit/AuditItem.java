@@ -30,6 +30,9 @@ public class AuditItem extends AbstractApiBase {
     private String userType;
     private String userName;
 
+    private String impersonatorUserType;
+    private String impersonatorUserName;
+
     // Resources
     private ResourceDetails resourceFirst;
     private ResourceDetails resourceSecond;
@@ -65,6 +68,14 @@ public class AuditItem extends AbstractApiBase {
 
     public String getId() {
         return id;
+    }
+
+    public String getImpersonatorUserName() {
+        return impersonatorUserName;
+    }
+
+    public String getImpersonatorUserType() {
+        return impersonatorUserType;
     }
 
     public String getLinkType() {
@@ -137,6 +148,14 @@ public class AuditItem extends AbstractApiBase {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public void setImpersonatorUserName(String impersonatorUserName) {
+        this.impersonatorUserName = impersonatorUserName;
+    }
+
+    public void setImpersonatorUserType(String impersonatorUserType) {
+        this.impersonatorUserType = impersonatorUserType;
     }
 
     public void setLinkType(String linkType) {

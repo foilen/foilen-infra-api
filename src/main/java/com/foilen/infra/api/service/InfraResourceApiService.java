@@ -31,6 +31,8 @@ public interface InfraResourceApiService {
      */
     ResponseResourceAppliedChanges applyChanges(RequestChanges changes);
 
+    ResponseResourceAppliedChanges applyChangesAs(String impersonateUserId, RequestChanges changesRequest);
+
     /**
      * Provided a resource details, returns a Map with only the primary keys values.
      *
@@ -62,6 +64,10 @@ public interface InfraResourceApiService {
      */
     ResponseResourceBuckets resourceFindAll(RequestResourceSearch resourceSearch);
 
+    ResourceBucketsWithPagination resourceFindAllAs(String impersonateUserId, int pageId, String search, boolean onlyWithEditor);
+
+    ResponseResourceBuckets resourceFindAllAs(String impersonateUserId, RequestResourceSearch resourceSearch);
+
     /**
      * Get all the resources with List permission and the details when you have View permission.
      *
@@ -70,6 +76,8 @@ public interface InfraResourceApiService {
      * @return the resources
      */
     ResponseResourceBuckets resourceFindAllWithDetails(RequestResourceSearch resourceSearch);
+
+    ResponseResourceBuckets resourceFindAllWithDetailsAs(String impersonateUserId, RequestResourceSearch resourceSearch);
 
     /**
      * Get all the resources without owners.

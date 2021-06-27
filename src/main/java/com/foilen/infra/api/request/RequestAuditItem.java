@@ -30,6 +30,9 @@ public class RequestAuditItem extends AbstractApiBase {
     private AuditUserType userType;
     private String userName;
 
+    private String impersonatorUserType;
+    private String impersonatorUserName;
+
     private String resourceFirstType;
     private String resourceSecondType;
 
@@ -53,6 +56,14 @@ public class RequestAuditItem extends AbstractApiBase {
 
     public Boolean getExplicitChange() {
         return explicitChange;
+    }
+
+    public String getImpersonatorUserName() {
+        return impersonatorUserName;
+    }
+
+    public String getImpersonatorUserType() {
+        return impersonatorUserType;
     }
 
     public String getLinkType() {
@@ -104,16 +115,28 @@ public class RequestAuditItem extends AbstractApiBase {
         return this;
     }
 
-    public void setDocumentId(String documentId) {
+    public RequestAuditItem setDocumentId(String documentId) {
         this.documentId = documentId;
+        return this;
     }
 
-    public void setDocumentType(String documentType) {
+    public RequestAuditItem setDocumentType(String documentType) {
         this.documentType = documentType;
+        return this;
     }
 
     public RequestAuditItem setExplicitChange(Boolean explicitChange) {
         this.explicitChange = explicitChange;
+        return this;
+    }
+
+    public RequestAuditItem setImpersonatorUserName(String impersonatorUserName) {
+        this.impersonatorUserName = impersonatorUserName;
+        return this;
+    }
+
+    public RequestAuditItem setImpersonatorUserType(String impersonatorUserType) {
+        this.impersonatorUserType = impersonatorUserType;
         return this;
     }
 
