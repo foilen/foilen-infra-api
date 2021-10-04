@@ -4,8 +4,8 @@ plugins {
 }
 
 apply plugin: 'eclipse'
-apply plugin: 'java'
-apply plugin: 'maven'
+apply plugin: 'java-library'
+apply plugin: 'maven-publish'
 apply plugin: 'signing'
 
 group = 'com.foilen'
@@ -34,17 +34,17 @@ eclipse {
 
 dependencies {
 
-  implementation "com.fasterxml.jackson.core:jackson-databind"
-  implementation "com.foilen:jl-smalltools:$smalltoolsVersion"
-  implementation "com.google.guava:guava:$guavaVersion"
-  implementation "javax.xml.bind:jaxb-api"
-  implementation "org.apache.commons:commons-lang3"
-  implementation "org.slf4j:slf4j-api"
+  api "com.fasterxml.jackson.core:jackson-databind"
+  api "com.foilen:jl-smalltools:$smalltoolsVersion"
+  api "com.google.guava:guava:$guavaVersion"
+  api "javax.xml.bind:jaxb-api"
+  api "org.apache.commons:commons-lang3"
+  api "org.slf4j:slf4j-api"
   
   // Spring
-  implementation "org.apache.httpcomponents:httpclient"
-  implementation "org.springframework:spring-context"
-  implementation "org.springframework:spring-web"
+  api "org.apache.httpcomponents:httpclient"
+  api "org.springframework:spring-context"
+  api "org.springframework:spring-web"
   
   // Test
   testCompileOnly "junit:junit"
@@ -54,45 +54,30 @@ dependencies {
   testImplementation 'ch.qos.logback:logback-classic'
 }
 
-task sourcesJar(type: Jar, dependsOn: classes) {
-  classifier = 'sources'
-  from sourceSets.main.allSource
+java {
+  withJavadocJar()
+  withSourcesJar()
 }
 
-task javadocJar(type: Jar, dependsOn: javadoc) {
-  classifier = 'javadoc'
-  from javadoc.destinationDir
-}
-
-artifacts {
-  archives javadocJar, sourcesJar
-}
-
-signing {
-  required { isReleaseVersion && gradle.taskGraph.hasTask(":uploadArchives") }
-  sign configurations.archives
-}
-
-uploadArchives {
+publishing {
   repositories {
-    mavenDeployer {
-      beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
-
-      repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
-        authentication(userName: System.getenv('OSSRH_USER'), password: System.getenv('OSSRH_PASS'))
+    maven {
+      url = "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+      credentials {
+        username = System.getenv('OSSRH_USER')
+        password = System.getenv('OSSRH_PASS')
       }
+    }
+  }
 
-      snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
-        authentication(userName: System.getenv('OSSRH_USER'), password: System.getenv('OSSRH_PASS'))
-      }
-
-      pom.project {
+  publications {
+    mavenJava(MavenPublication) {
+      pom {
         name = "foilen-infra-api"
-        packaging 'jar'
-        artifactId 'foilen-infra-api'
-        description 'This is the infra service API'
-        url 'https://github.com/foilen/foilen-infra-api'
-
+        description = 'This is the infra service API'
+        url = 'https://github.com/foilen/foilen-infra-api'
+        from components.java
+        
         scm {
           connection = "scm:git:git@github.com:foilen/foilen-infra-api.git"
           url = "https://github.com/foilen/foilen-infra-api"
@@ -107,12 +92,19 @@ uploadArchives {
 
         developers {
           developer {
-            id 'foilen'
-            name 'Simon Levesque'
-            email 'simon@foilen.com'
+            id = 'foilen'
+            name = 'Simon Levesque'
+            email = 'simon@foilen.com'
           }
         }
       }
     }
   }
+}
+
+signing {
+  sign publishing.publications.mavenJava
+}
+tasks.withType(Sign) {
+  onlyIf { isReleaseVersion }
 }
